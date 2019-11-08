@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherViewController" customModule="Forecasts" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPC-Zl-gju">
+                    <rect key="frame" x="8" y="32" width="359" height="68.5"/>
+                    <fontDescription key="fontDescription" name="Georgia-BoldItalic" family="Georgia" pointSize="60"/>
+                    <color key="textColor" red="0.02601820700036132" green="0.052902225078149921" blue="0.61932899746192893" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XVA-ny-iY2">
+                    <rect key="frame" x="8" y="108.5" width="359" height="518.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="sectionIndexBackgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2QY-Y5-Je1">
+                    <rect key="frame" x="0.0" y="635" width="375" height="32"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KyP-NX-sFq">
+                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="32"/>
+                            <color key="backgroundColor" red="0.99197608232498169" green="0.99591785669326782" blue="0.99203497171401978" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="Link"/>
+                            <connections>
+                                <action selector="linkActionButton:" destination="-1" eventType="touchUpInside" id="5ae-wI-9Yc"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zr2-OB-Uaz">
+                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="32"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="List"/>
+                            <connections>
+                                <action selector="listActionButton:" destination="-1" eventType="touchUpInside" id="73c-oN-fQL"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.99197608232498169" green="0.99591785669326782" blue="0.99203497171401978" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.099994154050000006" green="1" blue="0.097882055230000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="HPC-Zl-gju" secondAttribute="trailing" constant="8" id="2He-TE-J3i"/>
+                <constraint firstAttribute="bottom" secondItem="2QY-Y5-Je1" secondAttribute="bottom" id="6LB-7U-MUH"/>
+                <constraint firstItem="2QY-Y5-Je1" firstAttribute="top" secondItem="XVA-ny-iY2" secondAttribute="bottom" constant="8" id="BaE-zQ-vz3"/>
+                <constraint firstItem="XVA-ny-iY2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="ME9-rz-8ti"/>
+                <constraint firstItem="XVA-ny-iY2" firstAttribute="top" secondItem="HPC-Zl-gju" secondAttribute="bottom" constant="8" id="MYo-Oz-lez"/>
+                <constraint firstAttribute="trailing" secondItem="2QY-Y5-Je1" secondAttribute="trailing" id="OEl-f5-g5Q"/>
+                <constraint firstAttribute="trailing" secondItem="XVA-ny-iY2" secondAttribute="trailing" constant="8" id="eG5-Jy-7QM"/>
+                <constraint firstItem="HPC-Zl-gju" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="j65-Wa-PeE"/>
+                <constraint firstItem="2QY-Y5-Je1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ogO-nE-eyi"/>
+                <constraint firstItem="HPC-Zl-gju" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="pBG-b0-oiX"/>
+            </constraints>
+            <point key="canvasLocation" x="40.799999999999997" y="46.326836581709152"/>
+        </view>
+    </objects>
+</document>

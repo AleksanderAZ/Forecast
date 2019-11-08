@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TimeForecastCollectionCell" customModule="Forecasts" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="207" height="153"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="207" height="153"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ure-iY-XLS">
+                        <rect key="frame" x="0.0" y="0.0" width="207" height="153"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="J8a-oa-8s1">
+                                <rect key="frame" x="0.0" y="0.0" width="207" height="153"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-1i-HE5">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="51"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X46-3K-cjw">
+                                        <rect key="frame" x="0.0" y="51" width="207" height="51"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDk-7E-1MX">
+                                        <rect key="frame" x="0.0" y="102" width="207" height="51"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="J8a-oa-8s1" firstAttribute="top" secondItem="Ure-iY-XLS" secondAttribute="top" id="TcB-rx-mFR"/>
+                            <constraint firstAttribute="bottom" secondItem="J8a-oa-8s1" secondAttribute="bottom" id="fWC-XP-am8"/>
+                            <constraint firstAttribute="trailing" secondItem="J8a-oa-8s1" secondAttribute="trailing" id="hIe-bX-byE"/>
+                            <constraint firstItem="J8a-oa-8s1" firstAttribute="leading" secondItem="Ure-iY-XLS" secondAttribute="leading" id="sIP-CJ-cN3"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Ure-iY-XLS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="VkW-Nu-v2m"/>
+                <constraint firstAttribute="bottom" secondItem="Ure-iY-XLS" secondAttribute="bottom" id="Z8o-FM-041"/>
+                <constraint firstAttribute="trailing" secondItem="Ure-iY-XLS" secondAttribute="trailing" id="aOU-X3-JQt"/>
+                <constraint firstItem="Ure-iY-XLS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wih-u1-Wjk"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="207" height="153"/>
+            <point key="canvasLocation" x="180" y="135"/>
+        </collectionViewCell>
+    </objects>
+</document>
