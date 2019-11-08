@@ -28,5 +28,17 @@ class WeatherPresenter: WeatherPresenterProtocol {
     func showLinkView() {
         router.showLinkView()
     }
-
+    
+    func countCell(section: Int)->Int {
+        var count: Int
+        
+        if (section == 2) {
+            count = 7
+        }
+        else {
+            count = 1
+        }
+        
+        return count
+    }
 }

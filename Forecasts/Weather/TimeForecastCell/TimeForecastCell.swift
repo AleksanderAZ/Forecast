@@ -10,9 +10,16 @@ import UIKit
 
 class TimeForecastCell: UITableViewCell {
 
+    @IBOutlet weak var collectionTimeWeather: UICollectionView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    
+        collectionTimeWeather.delegate = self
+        collectionTimeWeather.dataSource = self
+        collectionTimeWeather.register(UINib(nibName: "TimeForecastCollectionCell", bundle: nil), forCellWithReuseIdentifier: "TimeForecastCollectionCell")
+        collectionTimeWeather.alwaysBounceHorizontal = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -21,4 +28,17 @@ class TimeForecastCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+}
+
+extension TimeForecastCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 14
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeForecastCollectionCell", for: indexPath)
+        
+        return cell
+    }
 }

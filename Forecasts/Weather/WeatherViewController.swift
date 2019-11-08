@@ -11,6 +11,9 @@
 import UIKit
 
 class WeatherViewController: UIViewController, WeatherViewProtocol {
+    
+    let cellIdentifier = [ "CurrentTempCell", "TimeForecastCell", "DayForecastCell", "AdditionInfoCell"]
+    
     @IBAction func listActionButton(_ sender: UIButton) {
         
         presenter?.showCityView()
@@ -20,10 +23,49 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
         
         presenter?.showLinkView()
     }
+    
+    @IBOutlet weak var weatherTable: UITableView!
+    @IBOutlet weak var cityLabel: UILabel!
+    
     var presenter: WeatherPresenterProtocol?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        
+        weatherTable.delegate = self
+        weatherTable.dataSource = self
+        for item in cellIdentifier {
+            weatherTable.register(UINib(nibName: item, bundle: nil), forCellReuseIdentifier: item)
+        }
+        weatherTable.rowHeight = UITableView.automaticDimension
+        weatherTable.tableFooterView = UIView(frame: .zero)
+    }
+}
+
+extension WeatherViewController:  UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = presenter?.countCell(section: section) ?? 0
+        return count
+    }
+    
+    func getIdentifier(section: Int)->String {
+        return cellIdentifier[section]
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier = getIdentifier(section: indexPath.section)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }

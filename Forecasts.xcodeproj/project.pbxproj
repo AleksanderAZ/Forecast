@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A44CDF1D2371E992001A8F91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44CDF1C2371E992001A8F91 /* AppDelegate.swift */; };
-		A44CDF1F2371E992001A8F91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44CDF1E2371E992001A8F91 /* ViewController.swift */; };
-		A44CDF222371E992001A8F91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44CDF202371E992001A8F91 /* Main.storyboard */; };
 		A44CDF252371E992001A8F91 /* Forecasts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A44CDF232371E992001A8F91 /* Forecasts.xcdatamodeld */; };
 		A44CDF272371E997001A8F91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A44CDF262371E997001A8F91 /* Assets.xcassets */; };
 		A44CDF2A2371E997001A8F91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44CDF282371E997001A8F91 /* LaunchScreen.storyboard */; };
@@ -75,8 +73,6 @@
 /* Begin PBXFileReference section */
 		A44CDF192371E992001A8F91 /* Forecasts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forecasts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A44CDF1C2371E992001A8F91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A44CDF1E2371E992001A8F91 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A44CDF212371E992001A8F91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A44CDF242371E992001A8F91 /* Forecasts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Forecasts.xcdatamodel; sourceTree = "<group>"; };
 		A44CDF262371E997001A8F91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A44CDF292371E997001A8F91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -180,8 +176,6 @@
 				A44CDF4F2371EA7F001A8F91 /* City */,
 				A44CDF4E2371EA20001A8F91 /* Weather */,
 				A44CDF4D2371E9A9001A8F91 /* AppServise */,
-				A44CDF1E2371E992001A8F91 /* ViewController.swift */,
-				A44CDF202371E992001A8F91 /* Main.storyboard */,
 				A44CDF2B2371E997001A8F91 /* Info.plist */,
 			);
 			path = Forecasts;
@@ -455,7 +449,6 @@
 				A48E5B872372B4DF0016BCBB /* SearchCity.xib in Resources */,
 				A44CDF272371E997001A8F91 /* Assets.xcassets in Resources */,
 				A44CDF8F2371FB10001A8F91 /* AdditionInfoCell.xib in Resources */,
-				A44CDF222371E992001A8F91 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +485,6 @@
 				A44CDF7C2371EF90001A8F91 /* WebViewInteractor.swift in Sources */,
 				A44CDF942371FB51001A8F91 /* DayForecastCell.swift in Sources */,
 				A44CDF582371EB33001A8F91 /* WeatherPresenter.swift in Sources */,
-				A44CDF1F2371E992001A8F91 /* ViewController.swift in Sources */,
 				A48E5B7E2372B4B90016BCBB /* SearchCityInteractor.swift in Sources */,
 				A48E5B8B2372CC030016BCBB /* TimeForecastCollectionCell.swift in Sources */,
 				A44CDF7F2371EF90001A8F91 /* WebViewRouter.swift in Sources */,
@@ -545,14 +537,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A44CDF202371E992001A8F91 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A44CDF212371E992001A8F91 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A44CDF282371E997001A8F91 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

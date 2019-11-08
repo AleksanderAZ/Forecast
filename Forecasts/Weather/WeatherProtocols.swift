@@ -19,6 +19,7 @@ protocol WeatherWireframeProtocol: class {
 protocol WeatherPresenterProtocol: class {
     func showCityView()
     func showLinkView()
+    func countCell(section: Int)->Int
 }
 
 //MARK: Interactor -

@@ -11,7 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherViewController" customModule="Forecasts" customModuleProvider="target">
             <connections>
+                <outlet property="cityLabel" destination="HPC-Zl-gju" id="Je1-Q8-05z"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weatherTable" destination="XVA-ny-iY2" id="BrM-5X-9bN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
