@@ -38,6 +38,9 @@ extension TimeForecastCell: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeForecastCollectionCell", for: indexPath)
+        if (collectionView.frame.size.height < cell.frame.size.height) {
+                collectionView.frame.size.height = cell.frame.size.height
+        }
         
         return cell
     }

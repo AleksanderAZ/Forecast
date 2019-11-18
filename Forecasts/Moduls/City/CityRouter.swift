@@ -27,4 +27,9 @@ class CityRouter: CityWireframeProtocol {
         
         return view
     }
+    
+    func showSearchCityView() {
+        let view = SearchCityRouter.createModule()
+        self.viewController?.navigationController?.pushViewController(view, animated: true)
+    }
 }

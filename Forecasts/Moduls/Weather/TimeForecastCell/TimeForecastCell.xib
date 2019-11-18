@@ -12,20 +12,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeForecastCell" rowHeight="156" id="KGk-i7-Jjw" customClass="TimeForecastCell" customModule="Forecasts" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="156"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeForecastCell" rowHeight="255" id="KGk-i7-Jjw" customClass="TimeForecastCell" customModule="Forecasts" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="196"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="155.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="195.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="g1X-FO-AyU">
-                        <rect key="frame" x="0.0" y="8" width="320" height="100"/>
+                        <rect key="frame" x="0.0" y="8" width="320" height="150"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="100" id="feT-jV-Xuc"/>
+                            <constraint firstAttribute="height" constant="150" id="feT-jV-Xuc"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oGr-uj-x7I">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="50" height="100"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -44,7 +44,7 @@
             <connections>
                 <outlet property="collectionTimeWeather" destination="g1X-FO-AyU" id="5JD-Qg-wXy"/>
             </connections>
-            <point key="canvasLocation" x="132.80000000000001" y="163.71814092953525"/>
+            <point key="canvasLocation" x="132.80000000000001" y="180.80959520239881"/>
         </tableViewCell>
     </objects>
 </document>

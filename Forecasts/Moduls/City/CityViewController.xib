@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CityViewController" customModule="Forecasts" customModuleProvider="target">
             <connections>
+                <outlet property="cityTable" destination="nyj-Ok-slb" id="DHC-x7-49A"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

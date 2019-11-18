@@ -11,7 +11,7 @@
 import UIKit
 
 class CityPresenter: CityPresenterProtocol {
-
+   
     weak private var view: CityViewProtocol?
     var interactor: CityInteractorProtocol?
     private let router: CityWireframeProtocol
@@ -22,4 +22,16 @@ class CityPresenter: CityPresenterProtocol {
         self.router = router
     }
 
+    
+    func countCell()->Int {
+        var count: Int
+        
+        count = 5
+        
+        return count
+    }
+    
+    func showSearchCityView() {
+        router.showSearchCityView()
+    }
 }
