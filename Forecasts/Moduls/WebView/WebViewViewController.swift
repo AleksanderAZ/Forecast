@@ -9,13 +9,24 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewViewController: UIViewController, WebViewViewProtocol {
 
-	var presenter: WebViewPresenterProtocol?
+    @IBOutlet weak var webView: UIWebView!
+    
+    var presenter: WebViewPresenterProtocol?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        
+        webView.delegate = self
+      
+        if let url = URL(string: RequestsDataAPI.webURL) {
+            webView?.loadRequest(URLRequest(url: url))
+        }
     }
+}
 
+extension WebViewViewController: UIWebViewDelegate {
 }

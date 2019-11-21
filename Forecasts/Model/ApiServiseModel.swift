@@ -9,6 +9,7 @@
 import Foundation
 
 struct RequestsDataAPI {
+    static let webURL = "https://developer.accuweather.com"
     static let methodGet = "GET"
     static let baseURL = "https://dataservice.accuweather.com/"
     static let townPath = "locations/v1/cities/autocomplete"

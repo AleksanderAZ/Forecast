@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebViewViewController" customModule="Forecasts" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="zPN-eC-YEc" id="NKw-dT-JsB"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,18 +20,19 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WebView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOA-jZ-XcK">
-                    <rect key="frame" x="152" y="323" width="71" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPN-eC-YEc">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </webView>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vOA-jZ-XcK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8zu-e7-Q8i"/>
-                <constraint firstItem="vOA-jZ-XcK" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="CAz-9H-aFY"/>
+                <constraint firstItem="zPN-eC-YEc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="30s-cG-PuI"/>
+                <constraint firstItem="zPN-eC-YEc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KYJ-8K-Swj"/>
+                <constraint firstAttribute="bottom" secondItem="zPN-eC-YEc" secondAttribute="bottom" id="NS8-nq-re6"/>
+                <constraint firstAttribute="trailing" secondItem="zPN-eC-YEc" secondAttribute="trailing" id="ODN-ze-Nfl"/>
             </constraints>
+            <point key="canvasLocation" x="90.400000000000006" y="93.103448275862078"/>
         </view>
     </objects>
 </document>

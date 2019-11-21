@@ -59,4 +59,14 @@ extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { (action, view, handler) in
+            print(indexPath.row)
+        })
+        
+        let config = UISwipeActionsConfiguration(actions: [deleteAction])
+        
+        return config
+    }
 }
