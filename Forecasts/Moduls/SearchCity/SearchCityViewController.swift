@@ -13,9 +13,82 @@ import UIKit
 class SearchCityViewController: UIViewController, SearchCityViewProtocol {
 
 	var presenter: SearchCityPresenterProtocol?
-
+    let cellIdentifier = "SearchCity"
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var cityTable: UITableView!
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cityTable.delegate = self
+        cityTable.dataSource = self
+        searchBar.delegate = self
+        
+        cityTable.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        
+        cityTable.rowHeight = UITableView.automaticDimension
+        cityTable.tableFooterView = UIView(frame: .zero)
+        
+        
+    }
+    
+}
+
+extension SearchCityViewController: UISearchBarDelegate {
+    
+    var isSearchEmpty: Bool {
+        return searchBar.text?.isEmpty ?? true
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("searchBarTextDidBeginEditing")
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("searchBarTextDidEndEditing" + searchBar.text!)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("searchBarCancelButtonClicked" + searchBar.text!)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchBar" + searchBar.text! + "----" + searchText)
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searchBarSearchButtonClicked" + searchBar.text!)
+        
+    }
+    
+  //  private var isSearch: Bool { return searchCon}
+}
+
+extension SearchCityViewController:  UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = presenter?.countCell() ?? 0
+        return count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        presenter?.closeView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 
 }

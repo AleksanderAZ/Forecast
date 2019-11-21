@@ -13,10 +13,12 @@ import Foundation
 //MARK: Wireframe -
 protocol CityWireframeProtocol: class {
     func showSearchCityView()
+    func closeView()
 }
 //MARK: Presenter -
 protocol CityPresenterProtocol: class {
     func countCell()->Int
+    func closeView()
     func showSearchCityView()
 }
 

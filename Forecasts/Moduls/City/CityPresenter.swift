@@ -26,12 +26,16 @@ class CityPresenter: CityPresenterProtocol {
     func countCell()->Int {
         var count: Int
         
-        count = 5
+        count = 12
         
         return count
     }
     
     func showSearchCityView() {
         router.showSearchCityView()
+    }
+    
+    func closeView() {
+        router.closeView()
     }
 }

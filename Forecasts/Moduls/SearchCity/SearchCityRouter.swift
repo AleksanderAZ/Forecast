@@ -27,4 +27,8 @@ class SearchCityRouter: SearchCityWireframeProtocol {
         
         return view
     }
+    
+    func closeView() {
+        self.viewController?.navigationController?.popViewController(animated: true)
+    }
 }

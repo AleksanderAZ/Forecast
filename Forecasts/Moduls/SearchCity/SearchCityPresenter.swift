@@ -21,5 +21,16 @@ class SearchCityPresenter: SearchCityPresenterProtocol {
         self.interactor = interactor
         self.router = router
     }
+    
+    func countCell()->Int {
+        var count: Int
+        
+        count = 12
+        
+        return count
+    }
 
+    func closeView() {
+        router.closeView()
+    }
 }

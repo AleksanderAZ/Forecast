@@ -32,4 +32,8 @@ class CityRouter: CityWireframeProtocol {
         let view = SearchCityRouter.createModule()
         self.viewController?.navigationController?.pushViewController(view, animated: true)
     }
+    
+    func closeView() {
+        self.viewController?.navigationController?.popToRootViewController(animated: true)
+    }
 }
