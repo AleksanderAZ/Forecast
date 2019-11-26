@@ -8,8 +8,14 @@
 
 import Foundation
 
-struct CityModel {
+struct CitySearchModel {
     let cityName: String
     let cityKey: String
+}
+
+struct CityModel {
+    let city: CitySearchModel
     let temp: String
 }
+
+

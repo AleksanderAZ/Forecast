@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4064F48238D2F1D009A132E /* CitysData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4064F47238D2F1D009A132E /* CitysData.swift */; };
+		A40B1E49238C138C00F66459 /* ForecastDayApiJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40B1E48238C138C00F66459 /* ForecastDayApiJsonModel.swift */; };
+		A40B1E4B238C13A800F66459 /* ForecastHourApiJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40B1E4A238C13A800F66459 /* ForecastHourApiJsonModel.swift */; };
+		A40B1E4D238C157B00F66459 /* CurrentlyApiJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40B1E4C238C157B00F66459 /* CurrentlyApiJsonModel.swift */; };
 		A41122082386B21E00BE3AB4 /* RepositoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41122072386B21E00BE3AB4 /* RepositoryInteractor.swift */; };
 		A411220A2386B23F00BE3AB4 /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41122092386B23F00BE3AB4 /* RepositoryProtocol.swift */; };
-		A4386318237DB4B800F03074 /* ApiServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4386317237DB4B800F03074 /* ApiServise.swift */; };
+		A4386318237DB4B800F03074 /* NetworkServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4386317237DB4B800F03074 /* NetworkServiceAPI.swift */; };
 		A438631A237DBA7200F03074 /* ApiServiseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4386319237DBA7200F03074 /* ApiServiseModel.swift */; };
-		A438631C237DBBB100F03074 /* ApiServiseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438631B237DBBB100F03074 /* ApiServiseProtocol.swift */; };
+		A438631C237DBBB100F03074 /* NetworkServiceAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438631B237DBBB100F03074 /* NetworkServiceAPIProtocol.swift */; };
 		A438631E237DBEA600F03074 /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438631D237DBEA600F03074 /* CityModel.swift */; };
 		A4386320237DBF5100F03074 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438631F237DBF5100F03074 /* WeatherModel.swift */; };
 		A44CDF1D2371E992001A8F91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44CDF1C2371E992001A8F91 /* AppDelegate.swift */; };
@@ -80,11 +84,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A4064F47238D2F1D009A132E /* CitysData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitysData.swift; sourceTree = "<group>"; };
+		A40B1E48238C138C00F66459 /* ForecastDayApiJsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDayApiJsonModel.swift; sourceTree = "<group>"; };
+		A40B1E4A238C13A800F66459 /* ForecastHourApiJsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastHourApiJsonModel.swift; sourceTree = "<group>"; };
+		A40B1E4C238C157B00F66459 /* CurrentlyApiJsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentlyApiJsonModel.swift; sourceTree = "<group>"; };
 		A41122072386B21E00BE3AB4 /* RepositoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInteractor.swift; sourceTree = "<group>"; };
 		A41122092386B23F00BE3AB4 /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
-		A4386317237DB4B800F03074 /* ApiServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServise.swift; sourceTree = "<group>"; };
+		A4386317237DB4B800F03074 /* NetworkServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceAPI.swift; sourceTree = "<group>"; };
 		A4386319237DBA7200F03074 /* ApiServiseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiseModel.swift; sourceTree = "<group>"; };
-		A438631B237DBBB100F03074 /* ApiServiseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiseProtocol.swift; sourceTree = "<group>"; };
+		A438631B237DBBB100F03074 /* NetworkServiceAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceAPIProtocol.swift; sourceTree = "<group>"; };
 		A438631D237DBEA600F03074 /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		A438631F237DBF5100F03074 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		A44CDF192371E992001A8F91 /* Forecasts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forecasts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,8 +177,8 @@
 		A4386315237DB42E00F03074 /* ApiServise */ = {
 			isa = PBXGroup;
 			children = (
-				A4386317237DB4B800F03074 /* ApiServise.swift */,
-				A438631B237DBBB100F03074 /* ApiServiseProtocol.swift */,
+				A4386317237DB4B800F03074 /* NetworkServiceAPI.swift */,
+				A438631B237DBBB100F03074 /* NetworkServiceAPIProtocol.swift */,
 			);
 			path = ApiServise;
 			sourceTree = "<group>";
@@ -182,6 +190,9 @@
 				A438631D237DBEA600F03074 /* CityModel.swift */,
 				A438631F237DBF5100F03074 /* WeatherModel.swift */,
 				A4F0C3E92380122700663A6C /* CityApiJsonModel.swift */,
+				A40B1E48238C138C00F66459 /* ForecastDayApiJsonModel.swift */,
+				A40B1E4A238C13A800F66459 /* ForecastHourApiJsonModel.swift */,
+				A40B1E4C238C157B00F66459 /* CurrentlyApiJsonModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -268,6 +279,7 @@
 		A44CDF4F2371EA7F001A8F91 /* City */ = {
 			isa = PBXGroup;
 			children = (
+				A4064F47238D2F1D009A132E /* CitysData.swift */,
 				A44CDF9E2371FBC0001A8F91 /* CityCell */,
 				A44CDF5D2371EB59001A8F91 /* CityInteractor.swift */,
 				A44CDF5E2371EB59001A8F91 /* CityPresenter.swift */,
@@ -533,7 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A41122082386B21E00BE3AB4 /* RepositoryInteractor.swift in Sources */,
-				A438631C237DBBB100F03074 /* ApiServiseProtocol.swift in Sources */,
+				A438631C237DBBB100F03074 /* NetworkServiceAPIProtocol.swift in Sources */,
 				A44CDF592371EB33001A8F91 /* WeatherProtocols.swift in Sources */,
 				A48E5B812372B4B90016BCBB /* SearchCityRouter.swift in Sources */,
 				A48E5B7F2372B4B90016BCBB /* SearchCityPresenter.swift in Sources */,
@@ -542,7 +554,8 @@
 				A411220A2386B23F00BE3AB4 /* RepositoryProtocol.swift in Sources */,
 				A44CDF672371EB59001A8F91 /* CityViewController.swift in Sources */,
 				A44CDF982371FB6D001A8F91 /* TimeForecastCell.swift in Sources */,
-				A4386318237DB4B800F03074 /* ApiServise.swift in Sources */,
+				A40B1E4D238C157B00F66459 /* CurrentlyApiJsonModel.swift in Sources */,
+				A4386318237DB4B800F03074 /* NetworkServiceAPI.swift in Sources */,
 				A438631A237DBA7200F03074 /* ApiServiseModel.swift in Sources */,
 				A44CDF662371EB59001A8F91 /* CityRouter.swift in Sources */,
 				A44CDF642371EB59001A8F91 /* CityPresenter.swift in Sources */,
@@ -559,8 +572,11 @@
 				A48E5B802372B4B90016BCBB /* SearchCityProtocols.swift in Sources */,
 				A44CDF652371EB59001A8F91 /* CityProtocols.swift in Sources */,
 				A44CDF7E2371EF90001A8F91 /* WebViewProtocols.swift in Sources */,
+				A40B1E4B238C13A800F66459 /* ForecastHourApiJsonModel.swift in Sources */,
 				A44CDF572371EB33001A8F91 /* WeatherInteractor.swift in Sources */,
+				A40B1E49238C138C00F66459 /* ForecastDayApiJsonModel.swift in Sources */,
 				A438631E237DBEA600F03074 /* CityModel.swift in Sources */,
+				A4064F48238D2F1D009A132E /* CitysData.swift in Sources */,
 				A44CDF5A2371EB33001A8F91 /* WeatherRouter.swift in Sources */,
 				A44CDF8E2371FB10001A8F91 /* AdditionInfoCell.swift in Sources */,
 				A44CDF5B2371EB33001A8F91 /* WeatherViewController.swift in Sources */,

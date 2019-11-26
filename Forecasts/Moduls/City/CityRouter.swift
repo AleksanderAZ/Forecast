@@ -29,8 +29,14 @@ class CityRouter: CityWireframeProtocol {
     }
     
     func showSearchCityView() {
-        let view = SearchCityRouter.createModule()
-        self.viewController?.navigationController?.pushViewController(view, animated: true)
+        let viewSearch = SearchCityRouter.createModule()
+        if let viewSearch = viewSearch as? SearchCityViewController {
+            if let viewController = self.viewController as? CityViewController {
+                viewSearch.delegate = viewController
+            }
+        }
+        
+        self.viewController?.navigationController?.pushViewController(viewSearch, animated: true)
     }
     
     func closeView() {

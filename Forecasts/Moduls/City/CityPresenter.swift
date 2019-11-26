@@ -24,11 +24,7 @@ class CityPresenter: CityPresenterProtocol {
 
     
     func countCell()->Int {
-        var count: Int
-        
-        count = 12
-        
-        return count
+        return CitysData.shared.citys.count
     }
     
     func showSearchCityView() {
@@ -37,5 +33,22 @@ class CityPresenter: CityPresenterProtocol {
     
     func closeView() {
         router.closeView()
+    }
+    
+    func addCity(citySearch: CitySearchModel?) {
+        self.interactor?.addCity(citySearch: citySearch)
+    }
+    
+    func getNameCity(index: Int)->String {
+        return CitysData.shared.citys[index].city.cityName
+    }
+    
+    func getTemprCity(index: Int)->String {
+        return CitysData.shared.citys[index].temp
+    }
+    
+    func deleteCity(index: Int) {
+        CitysData.shared.citys.remove(at: index)
+        self.view?.update()
     }
 }

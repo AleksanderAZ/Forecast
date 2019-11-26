@@ -55,4 +55,9 @@ class RepositoryData: RepositoryDataProtocol {
     func setUpdate(updatePresenter: (() -> ())?) {
         
     }
+    
+    func updateSearch(resultSearch: [CityAPIJSONElement]?) {
+        print(resultSearch)
+    }
+    
 }

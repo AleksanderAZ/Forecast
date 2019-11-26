@@ -10,6 +10,9 @@ import UIKit
 
 class CityCell: UITableViewCell {
 
+    @IBOutlet weak var nameCity: UILabel!
+    @IBOutlet weak var tempr: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

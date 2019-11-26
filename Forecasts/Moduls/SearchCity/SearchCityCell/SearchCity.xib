@@ -34,6 +34,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameCity" destination="dir-wx-09z" id="MDt-3Q-Mh9"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

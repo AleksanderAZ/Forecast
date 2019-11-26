@@ -15,6 +15,8 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
 	var presenter: SearchCityPresenterProtocol?
     let cellIdentifier = "SearchCity"
     
+    weak var delegate: CityNameSend?
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var cityTable: UITableView!
     
@@ -33,37 +35,44 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
         
     }
     
+    func update() {
+        DispatchQueue.main.async {
+            self.cityTable.reloadData()
+        }
+    }
+    
 }
 
 extension SearchCityViewController: UISearchBarDelegate {
     
-    var isSearchEmpty: Bool {
-        return searchBar.text?.isEmpty ?? true
+    private var isSearchEmpty: Bool {
+        guard let text = searchBar.text?.count else {return true}
+        return (text < 3)
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("searchBarTextDidBeginEditing")
+        //print("searchBarTextDidBeginEditing")
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("searchBarTextDidEndEditing" + searchBar.text!)
+       // print("searchBarTextDidEndEditing" + searchBar.text!)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("searchBarCancelButtonClicked" + searchBar.text!)
+       // print("searchBarCancelButtonClicked" + searchBar.text!)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("searchBar" + searchBar.text! + "----" + searchText)
+       // print("searchBar" + searchBar.text! + "----" + searchText)
         
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searchBarSearchButtonClicked" + searchBar.text!)
-        
+        if (!isSearchEmpty) {
+            guard let searchStr =  searchBar.text else {return }
+            self.presenter?.searchData(searchStr: searchStr)
+        }
     }
-    
-  //  private var isSearch: Bool { return searchCon}
 }
 
 extension SearchCityViewController:  UITableViewDataSource, UITableViewDelegate {
@@ -79,12 +88,15 @@ extension SearchCityViewController:  UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        if let cell = cell as? SearchCity {
+            cell.nameCity.text = self.presenter?.getNameCity(index: indexPath.row)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        presenter?.closeView()
+        guard let city = presenter?.getCity(index: indexPath.row) else { return }
+        presenter?.closeView(citySearch: city)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

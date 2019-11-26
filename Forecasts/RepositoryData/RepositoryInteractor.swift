@@ -32,5 +32,8 @@ class RepositoryInteractor: RepositoryInteractorProtocol {
        
     }
     
+    private func requestSearch(searchStr: String) {
+       
+    }
     
 }

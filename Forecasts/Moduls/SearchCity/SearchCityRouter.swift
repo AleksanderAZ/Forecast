@@ -28,7 +28,10 @@ class SearchCityRouter: SearchCityWireframeProtocol {
         return view
     }
     
-    func closeView() {
+    func closeView(citySearch: CitySearchModel?) {
+        if let viewController = self.viewController as? SearchCityViewController {
+            viewController.delegate?.getCity(citySearch: citySearch)
+        }
         self.viewController?.navigationController?.popViewController(animated: true)
     }
 }

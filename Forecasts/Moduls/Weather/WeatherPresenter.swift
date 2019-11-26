@@ -41,4 +41,5 @@ class WeatherPresenter: WeatherPresenterProtocol {
         
         return count
     }
+
 }

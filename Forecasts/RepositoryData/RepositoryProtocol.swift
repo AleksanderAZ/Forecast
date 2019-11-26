@@ -25,6 +25,7 @@ protocol RepositoryDataProtocol {
     func getWeather(city: CityModel) -> [Weather]?
     
     func setUpdate(updatePresenter: (()->())?)
+    func updateSearch(resultSearch: [CityAPIJSONElement]?) 
 }
 
 protocol RepositoryInteractorProtocol {

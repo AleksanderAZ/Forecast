@@ -35,6 +35,20 @@ class CityViewController: UIViewController, CityViewProtocol {
     @objc func clickRightButtonBar() {
         presenter?.showSearchCityView()
     }
+    
+    func update() {
+        print(11111111111111)
+        DispatchQueue.main.async {
+            self.cityTable.reloadData()
+        }
+    }
+}
+
+extension CityViewController: CityNameSend {
+    func getCity(citySearch: CitySearchModel?) {
+        self.presenter?.addCity(citySearch: citySearch)
+        self.update()
+    }
 }
 
 extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
@@ -50,10 +64,16 @@ extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        if let cell = cell as? CityCell {
+            cell.nameCity.text = self.presenter?.getNameCity(index: indexPath.row)
+            cell.tempr.text = self.presenter?.getTemprCity(index: indexPath.row)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //guard let city = presenter?.getCity(index: indexPath.row) else { return }
+        //presenter?.closeView(citySearch: city)
         print(indexPath.row)
         presenter?.closeView()
     }
@@ -64,11 +84,9 @@ extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { (action, view, handler) in
-            print(indexPath.row)
+            self.presenter?.deleteCity(index: indexPath.row)
         })
-        
         let config = UISwipeActionsConfiguration(actions: [deleteAction])
-        
         return config
     }
 }

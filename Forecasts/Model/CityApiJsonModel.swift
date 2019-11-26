@@ -11,7 +11,8 @@ import Foundation
 // MARK: - CityAPIJSONElement
 struct CityAPIJSONElement: Codable {
     let version: Int?
-    let key, type: String?
+    let key: String?
+    let type: String?
     let rank: Int?
     let localizedName: String?
     let country: AdministrativeArea?
@@ -30,7 +31,8 @@ struct CityAPIJSONElement: Codable {
 
 // MARK: - AdministrativeArea
 struct AdministrativeArea: Codable {
-    let id, localizedName: String?
+    let id: String?
+    let localizedName: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "ID"

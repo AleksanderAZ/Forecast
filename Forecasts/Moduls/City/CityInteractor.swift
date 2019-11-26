@@ -13,4 +13,20 @@ import UIKit
 class CityInteractor: CityInteractorProtocol {
 
     weak var presenter: CityPresenterProtocol?
+    
+    func addCity(citySearch: CitySearchModel?) {
+        guard let citySearch = citySearch else { return }
+        var isExist = false
+        for city in CitysData.shared.citys {
+            if (city.city.cityKey == citySearch.cityKey) {
+                isExist = true
+                break
+            }
+        }
+        if (isExist == false) {
+            CitysData.shared.citys.append(CityModel(city: citySearch, temp: "t=\(CitysData.shared.citys.count)"))
+        }
+    }
+    
+    
 }

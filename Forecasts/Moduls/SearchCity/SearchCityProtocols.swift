@@ -12,22 +12,31 @@ import Foundation
 
 //MARK: Wireframe -
 protocol SearchCityWireframeProtocol: class {
-    func closeView()
+    func closeView(citySearch: CitySearchModel?)
 }
 //MARK: Presenter -
 protocol SearchCityPresenterProtocol: class {
     func countCell()->Int
-    func closeView()
+    func updateSearch(resultSearch: [CitySearchModel]?)
+    func searchData(searchStr: String)
+    func getNameCity(index: Int)->String
+    func closeView(citySearch: CitySearchModel?)
+    func getCity(index: Int)->CitySearchModel?
 }
 
 //MARK: Interactor -
 protocol SearchCityInteractorProtocol: class {
 
-  var presenter: SearchCityPresenterProtocol?  { get set }
+    var presenter: SearchCityPresenterProtocol?  { get set }
+    
+    func requestSearch(searchStr: String)
+    
 }
 
 //MARK: View -
 protocol SearchCityViewProtocol: class {
 
   var presenter: SearchCityPresenterProtocol?  { get set }
+    
+  func update()
 }

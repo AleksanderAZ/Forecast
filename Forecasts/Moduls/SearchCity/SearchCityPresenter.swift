@@ -15,7 +15,8 @@ class SearchCityPresenter: SearchCityPresenterProtocol {
     weak private var view: SearchCityViewProtocol?
     var interactor: SearchCityInteractorProtocol?
     private let router: SearchCityWireframeProtocol
-
+    var resultSearch: [CitySearchModel]?
+    
     init(interface: SearchCityViewProtocol, interactor: SearchCityInteractorProtocol?, router: SearchCityWireframeProtocol) {
         self.view = interface
         self.interactor = interactor
@@ -23,14 +24,27 @@ class SearchCityPresenter: SearchCityPresenterProtocol {
     }
     
     func countCell()->Int {
-        var count: Int
-        
-        count = 12
-        
-        return count
+        return resultSearch?.count ?? 0
     }
 
-    func closeView() {
-        router.closeView()
+    func closeView(citySearch: CitySearchModel?) {
+        router.closeView(citySearch: citySearch)
+    }
+    
+    func updateSearch(resultSearch: [CitySearchModel]?) {
+        self.resultSearch = resultSearch
+        self.view?.update()
+    }
+    
+    func searchData(searchStr: String) {
+        self.interactor?.requestSearch(searchStr: searchStr)
+    }
+    
+    func getNameCity(index: Int)->String {
+        return resultSearch?[index].cityName ?? ""
+    }
+    
+    func getCity(index: Int)->CitySearchModel? {
+        return resultSearch?[index]
     }
 }

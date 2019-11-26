@@ -10,6 +10,7 @@ import UIKit
 
 class SearchCity: UITableViewCell {
 
+    @IBOutlet weak var nameCity: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

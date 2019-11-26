@@ -20,16 +20,26 @@ protocol CityPresenterProtocol: class {
     func countCell()->Int
     func closeView()
     func showSearchCityView()
+    func addCity(citySearch: CitySearchModel?)
+    func getNameCity(index: Int)->String
+    func getTemprCity(index: Int)->String
+    func deleteCity(index: Int)
 }
 
 //MARK: Interactor -
 protocol CityInteractorProtocol: class {
 
-  var presenter: CityPresenterProtocol?  { get set }
+    var presenter: CityPresenterProtocol?  { get set }
+    
+    func addCity(citySearch: CitySearchModel?)
 }
 
 //MARK: View -
 protocol CityViewProtocol: class {
+    var presenter: CityPresenterProtocol?  { get set }
+    func update()
+}
 
-  var presenter: CityPresenterProtocol?  { get set }
+protocol CityNameSend: class {
+    func getCity(citySearch: CitySearchModel?)
 }
