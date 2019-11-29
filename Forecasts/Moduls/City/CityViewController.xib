@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CityViewController" customModule="Forecasts" customModuleProvider="target">
             <connections>
                 <outlet property="cityTable" destination="nyj-Ok-slb" id="DHC-x7-49A"/>
+                <outlet property="indicator" destination="j3g-2h-8mf" id="tOy-co-lp8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,19 +21,37 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sky" highlightedImage="sky" translatesAutoresizingMaskIntoConstraints="NO" id="n7T-tj-qTT">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nyj-Ok-slb">
                     <rect key="frame" x="8" y="8" width="359" height="651"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-2h-8mf">
+                    <rect key="frame" x="169" y="315" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="0.057025447739999999" blue="0.068362611300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="j3g-2h-8mf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5TR-Tr-8Er"/>
                 <constraint firstItem="nyj-Ok-slb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="6fr-Hm-IOz"/>
+                <constraint firstAttribute="bottom" secondItem="n7T-tj-qTT" secondAttribute="bottom" id="Bzf-Z3-ekD"/>
+                <constraint firstAttribute="trailing" secondItem="n7T-tj-qTT" secondAttribute="trailing" id="CeT-f9-A5K"/>
                 <constraint firstItem="nyj-Ok-slb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="DSw-aU-wK9"/>
+                <constraint firstItem="n7T-tj-qTT" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="OXb-OO-b3H"/>
                 <constraint firstAttribute="trailing" secondItem="nyj-Ok-slb" secondAttribute="trailing" constant="8" id="UDy-LD-ETk"/>
+                <constraint firstItem="n7T-tj-qTT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hmi-Zf-cTB"/>
+                <constraint firstItem="n7T-tj-qTT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kIa-rd-Rn0"/>
+                <constraint firstItem="n7T-tj-qTT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lDv-hl-9Kb"/>
+                <constraint firstItem="j3g-2h-8mf" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="pTM-kt-SKW"/>
                 <constraint firstAttribute="bottom" secondItem="nyj-Ok-slb" secondAttribute="bottom" constant="8" id="r0J-B3-BI1"/>
             </constraints>
+            <point key="canvasLocation" x="133.59999999999999" y="111.99400299850076"/>
         </view>
     </objects>
+    <resources>
+        <image name="sky" width="800" height="1422"/>
+    </resources>
 </document>

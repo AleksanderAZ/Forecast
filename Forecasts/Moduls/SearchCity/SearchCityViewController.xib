@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchCityViewController" customModule="Forecasts" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="yiu-6e-hHX" id="MOD-Xg-NBz"/>
                 <outlet property="cityTable" destination="plf-UK-Hon" id="LFP-Tp-VKl"/>
                 <outlet property="searchBar" destination="ax2-X0-aKz" id="z8E-ev-Qts"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,7 +22,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ax2-X0-aKz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sky" highlightedImage="sky" translatesAutoresizingMaskIntoConstraints="NO" id="x9B-X0-xRQ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <searchBar contentMode="redraw" placeholder="Select City" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ax2-X0-aKz">
                     <rect key="frame" x="0.0" y="32" width="375" height="56"/>
                     <textInputTraits key="textInputTraits"/>
                     <scopeButtonTitles>
@@ -34,18 +38,32 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="yiu-6e-hHX">
+                    <rect key="frame" x="169" y="315" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="yiu-6e-hHX" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="3Tm-Mo-cLB"/>
                 <constraint firstItem="ax2-X0-aKz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="4Gc-fP-W6y"/>
+                <constraint firstItem="yiu-6e-hHX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="59c-tu-FJu"/>
                 <constraint firstItem="plf-UK-Hon" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="A4u-E8-b2d"/>
+                <constraint firstItem="x9B-X0-xRQ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="GrH-DC-huq"/>
+                <constraint firstItem="x9B-X0-xRQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Nq7-ni-2gI"/>
+                <constraint firstItem="x9B-X0-xRQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Xc5-wv-4t4"/>
+                <constraint firstItem="x9B-X0-xRQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZAA-3c-eHS"/>
                 <constraint firstAttribute="bottom" secondItem="plf-UK-Hon" secondAttribute="bottom" id="ZjV-Id-Mcc"/>
                 <constraint firstItem="ax2-X0-aKz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bNj-zh-aoD"/>
                 <constraint firstAttribute="trailing" secondItem="plf-UK-Hon" secondAttribute="trailing" id="iun-fN-jPb"/>
                 <constraint firstItem="plf-UK-Hon" firstAttribute="top" secondItem="ax2-X0-aKz" secondAttribute="bottom" constant="16" id="jL4-OS-s47"/>
                 <constraint firstAttribute="trailing" secondItem="ax2-X0-aKz" secondAttribute="trailing" id="mYS-ZY-obM"/>
+                <constraint firstAttribute="bottom" secondItem="x9B-X0-xRQ" secondAttribute="bottom" id="tfx-x8-LtB"/>
+                <constraint firstAttribute="trailing" secondItem="x9B-X0-xRQ" secondAttribute="trailing" id="xc1-0q-ZXO"/>
             </constraints>
             <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
         </view>
     </objects>
+    <resources>
+        <image name="sky" width="800" height="1422"/>
+    </resources>
 </document>

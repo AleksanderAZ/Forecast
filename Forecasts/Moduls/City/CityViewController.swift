@@ -12,6 +12,8 @@ import UIKit
 
 class CityViewController: UIViewController, CityViewProtocol {
 
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
     let cellIdentifier = "CityCell"
 	var presenter: CityPresenterProtocol?
     weak var delegate: WeatherDelegate?
@@ -25,7 +27,7 @@ class CityViewController: UIViewController, CityViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        indicator.startAnimating()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(clickRightButtonBar))
         
         cityTable.delegate = self
@@ -35,6 +37,11 @@ class CityViewController: UIViewController, CityViewProtocol {
        
         cityTable.rowHeight = UITableView.automaticDimension
         cityTable.tableFooterView = UIView(frame: .zero)
+        
+        guard let presenter = self.presenter else {return}
+        if presenter.countCell() < 1 {
+            presenter.showSearchCityView()
+        }
     }
 
     @objc func clickRightButtonBar() {
@@ -44,6 +51,7 @@ class CityViewController: UIViewController, CityViewProtocol {
     func update() {
         DispatchQueue.main.async {
             self.cityTable.reloadData()
+            self.indicator.stopAnimating()
         }
     }
 }

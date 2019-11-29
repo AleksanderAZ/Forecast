@@ -26,6 +26,14 @@ class WeatherInteractor: WeatherInteractorProtocol {
             return nil
         }
     }
+    func getHour(index: Int)->HourWeather? {
+        if index < getDayCount() {
+            return hourWeather[index]
+        }
+        else {
+            return nil
+        }
+    }
     
     func getDayCount()->Int {
         return dayWeather.count
@@ -95,5 +103,9 @@ class WeatherInteractor: WeatherInteractorProtocol {
             hourWeather.append(oneHour)
         }
         self.hourWeather = hourWeather
+    }
+    
+    func getHourCount()->Int {
+        return hourWeather.count
     }
 }

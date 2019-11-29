@@ -13,7 +13,8 @@ import SafariServices
 
 class WeatherViewController: UIViewController, WeatherViewProtocol {
     
-    var indexAddInfoSelect: Int = 0
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     let cellIdentifier = [ "CurrentTempCell", "TimeForecastCell", "DayForecastCell", "AdditionInfoCell"]
     
     @IBAction func listActionButton(_ sender: UIButton) {
@@ -44,7 +45,7 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-
+        activityIndicator.startAnimating()
         weatherTable.delegate = self
         weatherTable.dataSource = self
         for item in cellIdentifier {
@@ -53,6 +54,9 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
         weatherTable.rowHeight = UITableView.automaticDimension
         weatherTable.tableFooterView = UIView(frame: .zero)
         
+        if presenter?.getCityName() == "" {
+            presenter?.showCityView()
+        }
         update()
     }
     
@@ -60,6 +64,7 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
         DispatchQueue.main.async {
             self.cityLabel.text = self.presenter?.getCityName()
             self.weatherTable.reloadData()
+            self.activityIndicator.stopAnimating()
         }
     }
 }
@@ -68,7 +73,6 @@ extension WeatherViewController: WeatherDelegate {
     func getForecasts(city: CityModel?) {
         self.presenter?.getForecasts(city: city)
     }
-    
 }
 
 extension WeatherViewController:  UITableViewDataSource, UITableViewDelegate {
@@ -89,7 +93,9 @@ extension WeatherViewController:  UITableViewDataSource, UITableViewDelegate {
         let identifier = getIdentifier(section: indexPath.section)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let cell = cell as? AdditionInfoCell{
-            cell.configCell(index: indexAddInfoSelect)
+            if let index = presenter?.getIndexAddInfoSelect() {
+              cell.configCell(index: index)
+            }
         }
         else if let cell = cell as? DayForecastCell {
             cell.configCell(row: indexPath.row)

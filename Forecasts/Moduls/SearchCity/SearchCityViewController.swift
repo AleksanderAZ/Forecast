@@ -15,6 +15,7 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
 	var presenter: SearchCityPresenterProtocol?
     let cellIdentifier = "SearchCity"
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     weak var delegate: CityDelegate?
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -27,7 +28,7 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+        activityIndicator.startAnimating()
         searchBar.becomeFirstResponder()
         
         cityTable.delegate = self
@@ -43,6 +44,7 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
     func update() {
         DispatchQueue.main.async {
             self.cityTable.reloadData()
+            self.activityIndicator.stopAnimating()
         }
     }
     

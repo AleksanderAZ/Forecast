@@ -10,6 +10,8 @@ import UIKit
 
 class TimeForecastCell: UITableViewCell {
 
+    var presenter: WeatherPresenterProtocol?
+    
     @IBOutlet weak var collectionTimeWeather: UICollectionView!
     
     override func awakeFromNib() {
@@ -29,22 +31,24 @@ class TimeForecastCell: UITableViewCell {
     }
     
     func configCell() {
-        
+         self.collectionTimeWeather.reloadData()
     }
 }
 
 extension TimeForecastCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 14
+        return self.presenter?.countHour() ?? 0
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeForecastCollectionCell", for: indexPath)
         if (collectionView.frame.size.height < cell.frame.size.height) {
-                collectionView.frame.size.height = cell.frame.size.height
+            collectionView.frame.size.height = cell.frame.size.height
         }
         
+        if let cell = cell as? TimeForecastCollectionCell {
+            cell.configCell(index: indexPath.row)
+        }
         return cell
     }
 }

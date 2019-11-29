@@ -16,6 +16,10 @@ class WeatherPresenter: WeatherPresenterProtocol {
     var interactor: WeatherInteractorProtocol?
     private let router: WeatherWireframeProtocol
     
+    var indexAddInfoSelect: Int = 0
+    func getIndexAddInfoSelect()->Int {
+        return indexAddInfoSelect
+    }
     init(interface: WeatherViewProtocol, interactor: WeatherInteractorProtocol?, router: WeatherWireframeProtocol) {
         self.view = interface
         self.interactor = interactor
@@ -58,6 +62,9 @@ class WeatherPresenter: WeatherPresenterProtocol {
         return self.interactor?.getDay(index: index)
     }
     
+    func getHour(index: Int)->HourWeather? {
+        return self.interactor?.getHour(index: index)
+    }
     func getCityName()->String {
         guard let currentCity = interactor?.getCurrentCity() else { return ""}
         return currentCity.city.cityName
@@ -66,6 +73,10 @@ class WeatherPresenter: WeatherPresenterProtocol {
     func getCityTempr()->String {
         guard let currentCity = interactor?.getCurrentCity() else { return ""}
         return currentCity.temp
+    }
+    
+    func countHour()->Int {
+        return self.interactor?.getHourCount() ?? 0
     }
 }
 

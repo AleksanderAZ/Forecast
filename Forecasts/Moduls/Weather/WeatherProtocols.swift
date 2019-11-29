@@ -26,14 +26,19 @@ protocol WeatherPresenterProtocol: class {
     func update()
     func getCityName()->String
     func getCityTempr()->String
+    func countHour()->Int
+    func getHour(index: Int)->HourWeather?
+    func getIndexAddInfoSelect()->Int
 }
 
 //MARK: Interactor -
 protocol WeatherInteractorProtocol: class {
     var presenter: WeatherPresenterProtocol?  { get set }
     func getDayCount()->Int
+    func getHourCount()->Int
     func getForecasts(city: CityModel?)
     func getDay(index: Int)->DayWeather?
+    func getHour(index: Int)->HourWeather?
     func getCurrentCity()->CityModel?
 }
 

@@ -12,6 +12,7 @@ import UIKit
 extension UIViewController {
     
     func getCornerRadius(_ view: UIView) {
+        view.backgroundColor = .clear
         var radius: CGFloat
         let w = view.frame.width
         let h = view.frame.height
@@ -27,7 +28,9 @@ extension UIViewController {
     }
     func cornerRadiusAll() {
         
-        for subView in self.view.subviews {
+        guard let subView = self.view else {return}
+        getCornerRadius(subView)
+        for subView in subView.subviews {
             getCornerRadius(subView)
             for subView in subView.subviews {
                 getCornerRadius(subView)
@@ -39,6 +42,9 @@ extension UIViewController {
                             getCornerRadius(subView)
                             for subView in subView.subviews {
                                 getCornerRadius(subView)
+                                for subView in subView.subviews {
+                                    getCornerRadius(subView)
+                                }
                             }
                         }
                     }
