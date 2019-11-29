@@ -14,18 +14,50 @@ class CityInteractor: CityInteractorProtocol {
 
     weak var presenter: CityPresenterProtocol?
     
+    private func request(index: Int) {
+        let citySearch = CitysData.shared.citys[index].city
+        let pathURL = RequestsDataAPI.currentWeatherPath + citySearch.cityKey
+        NetworkServiceAPI.shared.loadAPIRequest(pathURL: pathURL) { [weak self] (result: [CurrentlyAPIJSONModel]?, error) in
+            guard let self = self else { return }
+            guard let result = result else { print(error as Any); return }
+            var cityTempr: String
+            if let tempr = result.first?.temperature?.metric?.value {
+                 cityTempr = "\(tempr)"
+            }
+            else {
+                cityTempr = "?"
+            }
+            CitysData.shared.citys[index].temp = cityTempr
+            self.updateTempr(index: index + 1)
+        }
+    }
+    
+    private func updateTempr(index: Int) {
+        if (index < CitysData.shared.citys.count) {
+            self.request(index: index)
+        }
+        else {
+            guard let presenter = self.presenter else { return }
+            presenter.update()
+        }
+    }
+    
     func addCity(citySearch: CitySearchModel?) {
         guard let citySearch = citySearch else { return }
         var isExist = false
         for city in CitysData.shared.citys {
             if (city.city.cityKey == citySearch.cityKey) {
                 isExist = true
-                break
             }
         }
         if (isExist == false) {
-            CitysData.shared.citys.append(CityModel(city: citySearch, temp: "t=\(CitysData.shared.citys.count)"))
+            CitysData.shared.citys.append(CityModel(city: citySearch, temp: ""))
         }
+        self.updateTempr(index: 0)
+    }
+    
+    func deleteCity(index: Int) {
+        CitysData.shared.citys.remove(at: index)
     }
     
     

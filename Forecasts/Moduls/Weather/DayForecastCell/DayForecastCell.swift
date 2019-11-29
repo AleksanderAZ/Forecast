@@ -21,4 +21,8 @@ class DayForecastCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configCell(row: Int) {
+        
+    }
+    
 }

@@ -10,12 +10,13 @@ import Foundation
 
 struct CitySearchModel {
     let cityName: String
+    let countryName: String
     let cityKey: String
 }
 
 struct CityModel {
     let city: CitySearchModel
-    let temp: String
+    var temp: String
 }
 
 

@@ -15,13 +15,20 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
 	var presenter: SearchCityPresenterProtocol?
     let cellIdentifier = "SearchCity"
     
-    weak var delegate: CityNameSend?
+    weak var delegate: CityDelegate?
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var cityTable: UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.cornerRadiusAll()
+    }
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.becomeFirstResponder()
         
         cityTable.delegate = self
         cityTable.dataSource = self
@@ -31,8 +38,6 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
         
         cityTable.rowHeight = UITableView.automaticDimension
         cityTable.tableFooterView = UIView(frame: .zero)
-        
-        
     }
     
     func update() {
@@ -45,32 +50,24 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
 
 extension SearchCityViewController: UISearchBarDelegate {
     
-    private var isSearchEmpty: Bool {
-        guard let text = searchBar.text?.count else {return true}
-        return (text < 3)
-    }
-
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        //print("searchBarTextDidBeginEditing")
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-       // print("searchBarTextDidEndEditing" + searchBar.text!)
-    }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-       // print("searchBarCancelButtonClicked" + searchBar.text!)
+        self.presenter?.closeView(citySearch: nil)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-       // print("searchBar" + searchBar.text! + "----" + searchText)
-        
+       getSearch(textSearchBar: searchBar.text)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if (!isSearchEmpty) {
-            guard let searchStr =  searchBar.text else {return }
-            self.presenter?.searchData(searchStr: searchStr)
+        getSearch(textSearchBar: searchBar.text)
+    }
+    
+    private func getSearch(textSearchBar: String?) {
+        if let textSearch = textSearchBar, textSearch.count > 2 {
+            self.presenter?.searchData(searchStr: textSearch)
+        }
+        else {
+            self.presenter?.searchDataEmpty()
         }
     }
 }

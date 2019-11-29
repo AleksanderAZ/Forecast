@@ -11,8 +11,6 @@
 		A40B1E49238C138C00F66459 /* ForecastDayApiJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40B1E48238C138C00F66459 /* ForecastDayApiJsonModel.swift */; };
 		A40B1E4B238C13A800F66459 /* ForecastHourApiJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40B1E4A238C13A800F66459 /* ForecastHourApiJsonModel.swift */; };
 		A40B1E4D238C157B00F66459 /* CurrentlyApiJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40B1E4C238C157B00F66459 /* CurrentlyApiJsonModel.swift */; };
-		A41122082386B21E00BE3AB4 /* RepositoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41122072386B21E00BE3AB4 /* RepositoryInteractor.swift */; };
-		A411220A2386B23F00BE3AB4 /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41122092386B23F00BE3AB4 /* RepositoryProtocol.swift */; };
 		A4386318237DB4B800F03074 /* NetworkServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4386317237DB4B800F03074 /* NetworkServiceAPI.swift */; };
 		A438631A237DBA7200F03074 /* ApiServiseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4386319237DBA7200F03074 /* ApiServiseModel.swift */; };
 		A438631C237DBBB100F03074 /* NetworkServiceAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438631B237DBBB100F03074 /* NetworkServiceAPIProtocol.swift */; };
@@ -52,6 +50,7 @@
 		A44CDF9D2371FB8A001A8F91 /* CurrentTempCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44CDF9B2371FB8A001A8F91 /* CurrentTempCell.xib */; };
 		A44CDFA12371FBE8001A8F91 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44CDF9F2371FBE8001A8F91 /* CityCell.swift */; };
 		A44CDFA22371FBE8001A8F91 /* CityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44CDFA02371FBE8001A8F91 /* CityCell.xib */; };
+		A4635E112390AD3500BD91A4 /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4635E102390AD3500BD91A4 /* Extention.swift */; };
 		A48E5B7E2372B4B90016BCBB /* SearchCityInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5B782372B4B90016BCBB /* SearchCityInteractor.swift */; };
 		A48E5B7F2372B4B90016BCBB /* SearchCityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5B792372B4B90016BCBB /* SearchCityPresenter.swift */; };
 		A48E5B802372B4B90016BCBB /* SearchCityProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5B7A2372B4B90016BCBB /* SearchCityProtocols.swift */; };
@@ -62,7 +61,6 @@
 		A48E5B872372B4DF0016BCBB /* SearchCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E5B852372B4DF0016BCBB /* SearchCity.xib */; };
 		A48E5B8B2372CC030016BCBB /* TimeForecastCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5B892372CC030016BCBB /* TimeForecastCollectionCell.swift */; };
 		A48E5B8C2372CC030016BCBB /* TimeForecastCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E5B8A2372CC030016BCBB /* TimeForecastCollectionCell.xib */; };
-		A4ED1B2D238313AF00CE6DE2 /* RepositoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED1B2C238313AF00CE6DE2 /* RepositoryData.swift */; };
 		A4F0C3EA2380122700663A6C /* CityApiJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0C3E92380122700663A6C /* CityApiJsonModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,8 +86,6 @@
 		A40B1E48238C138C00F66459 /* ForecastDayApiJsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDayApiJsonModel.swift; sourceTree = "<group>"; };
 		A40B1E4A238C13A800F66459 /* ForecastHourApiJsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastHourApiJsonModel.swift; sourceTree = "<group>"; };
 		A40B1E4C238C157B00F66459 /* CurrentlyApiJsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentlyApiJsonModel.swift; sourceTree = "<group>"; };
-		A41122072386B21E00BE3AB4 /* RepositoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInteractor.swift; sourceTree = "<group>"; };
-		A41122092386B23F00BE3AB4 /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
 		A4386317237DB4B800F03074 /* NetworkServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceAPI.swift; sourceTree = "<group>"; };
 		A4386319237DBA7200F03074 /* ApiServiseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiseModel.swift; sourceTree = "<group>"; };
 		A438631B237DBBB100F03074 /* NetworkServiceAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceAPIProtocol.swift; sourceTree = "<group>"; };
@@ -135,6 +131,7 @@
 		A44CDF9B2371FB8A001A8F91 /* CurrentTempCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentTempCell.xib; sourceTree = "<group>"; };
 		A44CDF9F2371FBE8001A8F91 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		A44CDFA02371FBE8001A8F91 /* CityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCell.xib; sourceTree = "<group>"; };
+		A4635E102390AD3500BD91A4 /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		A48E5B782372B4B90016BCBB /* SearchCityInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityInteractor.swift; sourceTree = "<group>"; };
 		A48E5B792372B4B90016BCBB /* SearchCityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityPresenter.swift; sourceTree = "<group>"; };
 		A48E5B7A2372B4B90016BCBB /* SearchCityProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityProtocols.swift; sourceTree = "<group>"; };
@@ -145,7 +142,6 @@
 		A48E5B852372B4DF0016BCBB /* SearchCity.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCity.xib; sourceTree = "<group>"; };
 		A48E5B892372CC030016BCBB /* TimeForecastCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeForecastCollectionCell.swift; sourceTree = "<group>"; };
 		A48E5B8A2372CC030016BCBB /* TimeForecastCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeForecastCollectionCell.xib; sourceTree = "<group>"; };
-		A4ED1B2C238313AF00CE6DE2 /* RepositoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryData.swift; sourceTree = "<group>"; };
 		A4F0C3E92380122700663A6C /* CityApiJsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityApiJsonModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,7 +216,7 @@
 		A44CDF1B2371E992001A8F91 /* Forecasts */ = {
 			isa = PBXGroup;
 			children = (
-				A4ED1B2B2383040300CE6DE2 /* RepositoryData */,
+				A4635E0F2390AD1C00BD91A4 /* Extention */,
 				A4386316237DB44D00F03074 /* Model */,
 				A4386315237DB42E00F03074 /* ApiServise */,
 				A4F0C3EB2380197A00663A6C /* Moduls */,
@@ -262,10 +258,10 @@
 		A44CDF4E2371EA20001A8F91 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				A44CDF852371F996001A8F91 /* AdditionInfoCell */,
-				A44CDF842371F96A001A8F91 /* DayForecastCell */,
-				A44CDF832371F909001A8F91 /* TimeForecastCell */,
 				A44CDF822371F8B6001A8F91 /* CurrentTempCell */,
+				A44CDF842371F96A001A8F91 /* DayForecastCell */,
+				A44CDF852371F996001A8F91 /* AdditionInfoCell */,
+				A44CDF832371F909001A8F91 /* TimeForecastCell */,
 				A44CDF512371EB33001A8F91 /* WeatherInteractor.swift */,
 				A44CDF522371EB33001A8F91 /* WeatherPresenter.swift */,
 				A44CDF532371EB33001A8F91 /* WeatherProtocols.swift */,
@@ -373,6 +369,14 @@
 			path = SearchCityCell;
 			sourceTree = "<group>";
 		};
+		A4635E0F2390AD1C00BD91A4 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				A4635E102390AD3500BD91A4 /* Extention.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
 		A48E5B882372CB480016BCBB /* TimeForecastCollectionCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,16 +384,6 @@
 				A48E5B8A2372CC030016BCBB /* TimeForecastCollectionCell.xib */,
 			);
 			path = TimeForecastCollectionCell;
-			sourceTree = "<group>";
-		};
-		A4ED1B2B2383040300CE6DE2 /* RepositoryData */ = {
-			isa = PBXGroup;
-			children = (
-				A4ED1B2C238313AF00CE6DE2 /* RepositoryData.swift */,
-				A41122072386B21E00BE3AB4 /* RepositoryInteractor.swift */,
-				A41122092386B23F00BE3AB4 /* RepositoryProtocol.swift */,
-			);
-			path = RepositoryData;
 			sourceTree = "<group>";
 		};
 		A4F0C3EB2380197A00663A6C /* Moduls */ = {
@@ -544,14 +538,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A41122082386B21E00BE3AB4 /* RepositoryInteractor.swift in Sources */,
 				A438631C237DBBB100F03074 /* NetworkServiceAPIProtocol.swift in Sources */,
 				A44CDF592371EB33001A8F91 /* WeatherProtocols.swift in Sources */,
 				A48E5B812372B4B90016BCBB /* SearchCityRouter.swift in Sources */,
 				A48E5B7F2372B4B90016BCBB /* SearchCityPresenter.swift in Sources */,
 				A44CDF9C2371FB8A001A8F91 /* CurrentTempCell.swift in Sources */,
-				A4ED1B2D238313AF00CE6DE2 /* RepositoryData.swift in Sources */,
-				A411220A2386B23F00BE3AB4 /* RepositoryProtocol.swift in Sources */,
 				A44CDF672371EB59001A8F91 /* CityViewController.swift in Sources */,
 				A44CDF982371FB6D001A8F91 /* TimeForecastCell.swift in Sources */,
 				A40B1E4D238C157B00F66459 /* CurrentlyApiJsonModel.swift in Sources */,
@@ -571,6 +562,7 @@
 				A44CDF7D2371EF90001A8F91 /* WebViewPresenter.swift in Sources */,
 				A48E5B802372B4B90016BCBB /* SearchCityProtocols.swift in Sources */,
 				A44CDF652371EB59001A8F91 /* CityProtocols.swift in Sources */,
+				A4635E112390AD3500BD91A4 /* Extention.swift in Sources */,
 				A44CDF7E2371EF90001A8F91 /* WebViewProtocols.swift in Sources */,
 				A40B1E4B238C13A800F66459 /* ForecastHourApiJsonModel.swift in Sources */,
 				A44CDF572371EB33001A8F91 /* WeatherInteractor.swift in Sources */,

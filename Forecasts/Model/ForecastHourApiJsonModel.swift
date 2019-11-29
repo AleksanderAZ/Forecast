@@ -9,12 +9,14 @@
 import Foundation
 
 
-// MARK: - ForecastHourAPIJSONElement
-struct ForecastHourAPIJSONElement: Codable {
-    let dateTime: Date?
+// MARK: - ForecastHourAPIJSONModel
+struct ForecastHourAPIJSONModel: Codable {
+    let dateTime: String?
     let epochDateTime, weatherIcon: Int?
-    let iconPhrase: IconPhrase?
-    let hasPrecipitation, isDaylight: Bool?
+    let iconPhrase: String?
+    let hasPrecipitation: Bool?
+    let precipitationType, precipitationIntensity: String?
+    let isDaylight: Bool?
     let temperature: Temperature?
     let precipitationProbability: Int?
     let mobileLink, link: String?
@@ -25,6 +27,8 @@ struct ForecastHourAPIJSONElement: Codable {
         case weatherIcon = "WeatherIcon"
         case iconPhrase = "IconPhrase"
         case hasPrecipitation = "HasPrecipitation"
+        case precipitationType = "PrecipitationType"
+        case precipitationIntensity = "PrecipitationIntensity"
         case isDaylight = "IsDaylight"
         case temperature = "Temperature"
         case precipitationProbability = "PrecipitationProbability"
@@ -33,15 +37,10 @@ struct ForecastHourAPIJSONElement: Codable {
     }
 }
 
-enum IconPhrase: String, Codable {
-    case cloudy = "Cloudy"
-    case intermittentClouds = "Intermittent clouds"
-}
-
 // MARK: - Temperature
 struct Temperature: Codable {
     let value: Int?
-    let unit: Unit?
+    let unit: String?
     let unitType: Int?
     
     enum CodingKeys: String, CodingKey {
@@ -50,6 +49,3 @@ struct Temperature: Codable {
         case unitType = "UnitType"
     }
 }
-
-typealias ForecastHourAPIJSON = [ForecastHourAPIJSONElement]
-

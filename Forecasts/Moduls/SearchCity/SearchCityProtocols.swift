@@ -22,13 +22,14 @@ protocol SearchCityPresenterProtocol: class {
     func getNameCity(index: Int)->String
     func closeView(citySearch: CitySearchModel?)
     func getCity(index: Int)->CitySearchModel?
+    func searchDataEmpty()
 }
 
 //MARK: Interactor -
 protocol SearchCityInteractorProtocol: class {
 
     var presenter: SearchCityPresenterProtocol?  { get set }
-    
+    func searchDataEmpty()
     func requestSearch(searchStr: String)
     
 }

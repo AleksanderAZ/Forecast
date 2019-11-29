@@ -32,6 +32,6 @@ class SearchCityRouter: SearchCityWireframeProtocol {
         if let viewController = self.viewController as? SearchCityViewController {
             viewController.delegate?.getCity(citySearch: citySearch)
         }
-        self.viewController?.navigationController?.popViewController(animated: true)
+        self.viewController?.dismiss(animated: true, completion: nil)   //navigationController?.popViewController(animated: true)
     }
 }

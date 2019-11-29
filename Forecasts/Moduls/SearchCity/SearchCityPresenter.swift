@@ -40,8 +40,14 @@ class SearchCityPresenter: SearchCityPresenterProtocol {
         self.interactor?.requestSearch(searchStr: searchStr)
     }
     
+    func searchDataEmpty() {
+        self.interactor?.searchDataEmpty()
+    }
+    
     func getNameCity(index: Int)->String {
-        return resultSearch?[index].cityName ?? ""
+        let cityName = resultSearch?[index].cityName ?? ""
+        let countryName = resultSearch?[index].countryName ?? ""
+        return cityName  + ", " + countryName
     }
     
     func getCity(index: Int)->CitySearchModel? {

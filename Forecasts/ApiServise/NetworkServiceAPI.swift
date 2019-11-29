@@ -20,14 +20,17 @@ class NetworkServiceAPI: NSObject, NetworkServiceApiProtocol {
         var request = URLRequest(url: componentsUrl)
         request.httpMethod = method
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
             guard let data = data, let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode, error == nil else {
                 completion(nil, error?.localizedDescription)
                 return
             }
-            if let result = try? JSONDecoder().decode(T?.self, from: data) {
-                return completion(result, nil)
-            } else {
-                return completion(nil, ErrorInfo.dataIsNil.string)
+            do {
+                let result = try JSONDecoder().decode(T?.self, from: data)
+                completion(result, nil)
+            } catch {
+                print("ERROR", error.localizedDescription)
+                completion(nil, ErrorInfo.dataIsNil.string)
             }
         }
         self.sessionDataTask = task
@@ -49,9 +52,11 @@ class NetworkServiceAPI: NSObject, NetworkServiceApiProtocol {
             completion(result, nil)
         }
     }
+    
     func loadAPIRequest<T: Codable>(pathURL: String, completion: @escaping (T?, String?)->()) {
-        let url = RequestsDataAPI.baseURL + pathURL
-        self.request(RequestsDataAPI.methodGet, url, RequestsDataAPI.parametersApiKey) { [weak self] (result: T?, error) in
+        let parameters: [String: String] = RequestsDataAPI.parametersApiKey
+        let url = RequestsDataAPI.baseURL + pathURL        
+        self.request(RequestsDataAPI.methodGet, url, parameters) { [weak self] (result: T?, error) in
             guard let result = result else {
                 completion(nil, error)
                 return

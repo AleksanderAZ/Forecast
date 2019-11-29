@@ -9,19 +9,20 @@
 import Foundation
 
 
-// MARK: - CurrentlyAPIJSONElement
-struct CurrentlyAPIJSONElement: Codable {
-    let localObservationDateTime: Date?
+// MARK: - CurrentlyAPIJSONModel
+struct CurrentlyAPIJSONModel: Codable {
+    let localObservationDateTime: String?
     let epochTime: Int?
     let weatherText: String?
     let weatherIcon: Int?
     let hasPrecipitation: Bool?
-    let precipitationType: JSONNull?
+    let precipitationType: String?
     let isDayTime: Bool?
     let temperature, realFeelTemperature, realFeelTemperatureShade: ApparentTemperature?
+    
     let relativeHumidity: Int?
     let dewPoint: ApparentTemperature?
-    let wind: Wind?
+    let wind: WindCur?
     let windGust: WindGust?
     let uvIndex: Int?
     let uvIndexText: String?
@@ -74,7 +75,7 @@ struct CurrentlyAPIJSONElement: Codable {
 // MARK: - ApparentTemperature
 struct ApparentTemperature: Codable {
     let metric, imperial: Imperial?
-    
+
     enum CodingKeys: String, CodingKey {
         case metric = "Metric"
         case imperial = "Imperial"
@@ -125,8 +126,19 @@ struct PastHourRange: Codable {
     }
 }
 
-// MARK: - Direction
-struct Direction: Codable {
+// MARK: - WindCur
+struct WindCur: Codable {
+    let direction: DirectionCur?
+    let speed: ApparentTemperature?
+    
+    enum CodingKeys: String, CodingKey {
+        case direction = "Direction"
+        case speed = "Speed"
+    }
+}
+
+// MARK: - DirectionCur
+struct DirectionCur: Codable {
     let degrees: Int?
     let localized, english: String?
     
@@ -145,33 +157,3 @@ struct WindGust: Codable {
         case speed = "Speed"
     }
 }
-
-typealias CurrentlyAPIJSON = [CurrentlyAPIJSONElement]
-
-// MARK: - Encode/decode helpers
-
-class JSONNull: Codable, Hashable {
-    
-    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-        return true
-    }
-    
-    public var hashValue: Int {
-        return 0
-    }
-    
-    public init() {}
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-        }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encodeNil()
-    }
-}
-

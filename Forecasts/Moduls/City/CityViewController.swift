@@ -14,13 +14,18 @@ class CityViewController: UIViewController, CityViewProtocol {
 
     let cellIdentifier = "CityCell"
 	var presenter: CityPresenterProtocol?
-
+    weak var delegate: WeatherDelegate?
+    
     @IBOutlet weak var cityTable: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.cornerRadiusAll()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      //  self.navigationItem.leftBarButtonItem
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(clickRightButtonBar))
         
         cityTable.delegate = self
@@ -37,17 +42,15 @@ class CityViewController: UIViewController, CityViewProtocol {
     }
     
     func update() {
-        print(11111111111111)
         DispatchQueue.main.async {
             self.cityTable.reloadData()
         }
     }
 }
 
-extension CityViewController: CityNameSend {
+extension CityViewController: CityDelegate {
     func getCity(citySearch: CitySearchModel?) {
         self.presenter?.addCity(citySearch: citySearch)
-        self.update()
     }
 }
 
@@ -75,7 +78,8 @@ extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
         //guard let city = presenter?.getCity(index: indexPath.row) else { return }
         //presenter?.closeView(citySearch: city)
         print(indexPath.row)
-        presenter?.closeView()
+        
+        presenter?.closeView(index: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

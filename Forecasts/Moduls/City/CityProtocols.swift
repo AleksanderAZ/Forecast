@@ -13,17 +13,18 @@ import Foundation
 //MARK: Wireframe -
 protocol CityWireframeProtocol: class {
     func showSearchCityView()
-    func closeView()
+    func closeView(city: CityModel?)
 }
 //MARK: Presenter -
 protocol CityPresenterProtocol: class {
     func countCell()->Int
-    func closeView()
+    func closeView(index: Int)
     func showSearchCityView()
     func addCity(citySearch: CitySearchModel?)
     func getNameCity(index: Int)->String
     func getTemprCity(index: Int)->String
     func deleteCity(index: Int)
+    func update()
 }
 
 //MARK: Interactor -
@@ -32,6 +33,7 @@ protocol CityInteractorProtocol: class {
     var presenter: CityPresenterProtocol?  { get set }
     
     func addCity(citySearch: CitySearchModel?)
+    func deleteCity(index: Int)
 }
 
 //MARK: View -
@@ -40,6 +42,6 @@ protocol CityViewProtocol: class {
     func update()
 }
 
-protocol CityNameSend: class {
+protocol CityDelegate: class {
     func getCity(citySearch: CitySearchModel?)
 }

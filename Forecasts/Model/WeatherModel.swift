@@ -9,11 +9,9 @@
 import Foundation
 
 struct Weather {
-    let cityName: String
-    let temp: String
-    let hoursWeather: [HourWeather]
-    let daysWeather: [DayWeather]
-    let addInfo: AddInfo
+    let currentCity: CityModel?
+    let hoursWeather: [HourWeather]?
+    let daysWeather: [DayWeather]?
 }
 
 struct HourWeather {
@@ -26,8 +24,7 @@ struct DayWeather {
     let day: String
     let icon: String
     let temp: String
+    let sunRise: String
+    let sunSet: String
 }
 
-struct AddInfo {
-    let startInfo: String
-}

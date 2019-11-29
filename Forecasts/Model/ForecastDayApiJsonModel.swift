@@ -8,9 +8,8 @@
 
 import Foundation
 
-
-// MARK: - ForecastDayAPIJSON
-struct ForecastDayAPIJSON: Codable {
+// MARK: - ForecastDayAPIJSONModel
+struct ForecastDayAPIJSONModel: Codable {
     let headline: Headline?
     let dailyForecasts: [DailyForecast]?
     
@@ -22,7 +21,7 @@ struct ForecastDayAPIJSON: Codable {
 
 // MARK: - DailyForecast
 struct DailyForecast: Codable {
-    let date: Date?
+    let date: String?
     let epochDate: Int?
     let sun: Sun?
     let moon: Moon?
@@ -57,7 +56,7 @@ struct DailyForecast: Codable {
 struct AirAndPollen: Codable {
     let name: String?
     let value: Int?
-    let category: Category?
+    let category: String?
     let categoryValue: Int?
     let type: String?
     
@@ -70,11 +69,6 @@ struct AirAndPollen: Codable {
     }
 }
 
-enum Category: String, Codable {
-    case good = "Good"
-    case low = "Low"
-}
-
 // MARK: - Day
 struct Day: Codable {
     let icon: Int?
@@ -83,8 +77,7 @@ struct Day: Codable {
     let precipitationType, precipitationIntensity, shortPhrase, longPhrase: String?
     let precipitationProbability, thunderstormProbability, rainProbability, snowProbability: Int?
     let iceProbability: Int?
-    let wind: Wind?
-    let windGust: WindGust?
+    let wind, windGust: Wind?
     let totalLiquid, rain, snow, ice: Ice?
     let hoursOfPrecipitation, hoursOfRain: Double?
     let hoursOfSnow, hoursOfIce, cloudCover: Int?
@@ -119,7 +112,7 @@ struct Day: Codable {
 // MARK: - Ice
 struct Ice: Codable {
     let value: Double?
-    let unit: Unit?
+    let unit: String?
     let unitType: Int?
     
     enum CodingKeys: String, CodingKey {
@@ -127,12 +120,6 @@ struct Ice: Codable {
         case unit = "Unit"
         case unitType = "UnitType"
     }
-}
-
-enum Unit: String, Codable {
-    case f = "F"
-    case miH = "mi/h"
-    case unitIn = "in"
 }
 
 // MARK: - Wind
@@ -146,6 +133,17 @@ struct Wind: Codable {
     }
 }
 
+// MARK: - Direction
+struct Direction: Codable {
+    let degrees: Int?
+    let localized, english: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case degrees = "Degrees"
+        case localized = "Localized"
+        case english = "English"
+    }
+}
 
 // MARK: - DegreeDaySummary
 struct DegreeDaySummary: Codable {
@@ -159,9 +157,9 @@ struct DegreeDaySummary: Codable {
 
 // MARK: - Moon
 struct Moon: Codable {
-    let rise: Date?
+    let rise: String?
     let epochRise: Int?
-    let moonSet: Date?
+    let moonSet: String?
     let epochSet: Int?
     let phase: String?
     let age: Int?
@@ -188,9 +186,9 @@ struct RealFeelTemperature: Codable {
 
 // MARK: - Sun
 struct Sun: Codable {
-    let rise: Date?
+    let rise: String?
     let epochRise: Int?
-    let sunSet: Date?
+    let sunSet: String?
     let epochSet: Int?
     
     enum CodingKeys: String, CodingKey {
@@ -203,10 +201,10 @@ struct Sun: Codable {
 
 // MARK: - Headline
 struct Headline: Codable {
-    let effectiveDate: Date?
+    let effectiveDate: String?
     let effectiveEpochDate, severity: Int?
     let text, category: String?
-    let endDate: Date?
+    let endDate: String?
     let endEpochDate: Int?
     let mobileLink, link: String?
     

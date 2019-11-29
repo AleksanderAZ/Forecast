@@ -10,6 +10,10 @@ import UIKit
 
 class CurrentTempCell: UITableViewCell {
 
+    var presenter: WeatherPresenterProtocol?
+    
+    @IBOutlet weak var temprLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +25,7 @@ class CurrentTempCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configCell() {
+        self.temprLabel.text = self.presenter?.getCityTempr()
+    }
 }

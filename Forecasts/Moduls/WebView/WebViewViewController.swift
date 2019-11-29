@@ -17,9 +17,12 @@ class WebViewViewController: UIViewController, WebViewViewProtocol {
     
     var presenter: WebViewPresenterProtocol?
 
+    
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         
+       
         webView.delegate = self
       
         if let url = URL(string: RequestsDataAPI.webURL) {

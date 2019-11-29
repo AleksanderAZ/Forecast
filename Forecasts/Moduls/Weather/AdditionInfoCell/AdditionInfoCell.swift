@@ -10,6 +10,10 @@ import UIKit
 
 class AdditionInfoCell: UITableViewCell {
 
+    var presenter: AdditionInfoCellProtocol?
+    
+    @IBOutlet weak var addInfoLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +25,7 @@ class AdditionInfoCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configCell(index: Int) {
+        addInfoLabel.text = presenter?.getAddInfo(index: index)
+    }
 }

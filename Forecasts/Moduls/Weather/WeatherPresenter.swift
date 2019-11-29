@@ -11,11 +11,11 @@
 import UIKit
 
 class WeatherPresenter: WeatherPresenterProtocol {
-
+    
     weak private var view: WeatherViewProtocol?
     var interactor: WeatherInteractorProtocol?
     private let router: WeatherWireframeProtocol
-
+    
     init(interface: WeatherViewProtocol, interactor: WeatherInteractorProtocol?, router: WeatherWireframeProtocol) {
         self.view = interface
         self.interactor = interactor
@@ -26,20 +26,54 @@ class WeatherPresenter: WeatherPresenterProtocol {
         router.showCityView()
     }
     func showLinkView() {
-        router.showLinkView()
+        let cityName = "CurrentCity"
+        router.showLinkView(cityName: cityName)
+    }
+    
+    func openLinkSafary() {
+        self.router.openLinkSafary(link: RequestsDataAPI.webURL)
     }
     
     func countCell(section: Int)->Int {
         var count: Int
         
         if (section == 2) {
-            count = 7
+            count = self.interactor?.getDayCount() ?? 0
         }
         else {
             count = 1
         }
-        
         return count
     }
+    
+    func getForecasts(city: CityModel?) {
+        self.interactor?.getForecasts(city: city)
+    }
 
+    func update() {
+        self.view?.update()
+    }
+    
+    private func getDay(index: Int)->DayWeather? {
+        return self.interactor?.getDay(index: index)
+    }
+    
+    func getCityName()->String {
+        guard let currentCity = interactor?.getCurrentCity() else { return ""}
+        return currentCity.city.cityName
+    }
+    
+    func getCityTempr()->String {
+        guard let currentCity = interactor?.getCurrentCity() else { return ""}
+        return currentCity.temp
+    }
+}
+
+extension WeatherPresenter: AdditionInfoCellProtocol {
+    func getAddInfo(index: Int)->String {
+        let dayInfo = getDay(index: index)
+        let sunRise = dayInfo?.sunRise ?? ""
+        let sunSet = dayInfo?.sunSet ?? ""
+        return "sunRise: " + sunRise + " - sunSet: " + sunSet
+    }
 }

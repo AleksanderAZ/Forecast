@@ -13,23 +13,41 @@ import Foundation
 //MARK: Wireframe -
 protocol WeatherWireframeProtocol: class {
     func showCityView()
-    func showLinkView()
+    func showLinkView(cityName: String)
+    func openLinkSafary(link: String)
 }
 //MARK: Presenter -
 protocol WeatherPresenterProtocol: class {
     func showCityView()
     func showLinkView()
+    func openLinkSafary()
     func countCell(section: Int)->Int
+    func getForecasts(city: CityModel?)
+    func update()
+    func getCityName()->String
+    func getCityTempr()->String
 }
 
 //MARK: Interactor -
 protocol WeatherInteractorProtocol: class {
-
-  var presenter: WeatherPresenterProtocol?  { get set }
+    var presenter: WeatherPresenterProtocol?  { get set }
+    func getDayCount()->Int
+    func getForecasts(city: CityModel?)
+    func getDay(index: Int)->DayWeather?
+    func getCurrentCity()->CityModel?
 }
 
 //MARK: View -
 protocol WeatherViewProtocol: class {
+    func getForecasts(city: CityModel?)
+    var presenter: WeatherPresenterProtocol?  { get set }
+    func update()
+}
 
-  var presenter: WeatherPresenterProtocol?  { get set }
+protocol WeatherDelegate: class {
+    func getForecasts(city: CityModel?)
+}
+
+protocol  AdditionInfoCellProtocol: class {
+     func getAddInfo(index: Int)->String 
 }

@@ -9,19 +9,20 @@
 //
 
 import UIKit
+import SafariServices
 
 class WeatherViewController: UIViewController, WeatherViewProtocol {
     
+    var indexAddInfoSelect: Int = 0
     let cellIdentifier = [ "CurrentTempCell", "TimeForecastCell", "DayForecastCell", "AdditionInfoCell"]
     
     @IBAction func listActionButton(_ sender: UIButton) {
-        
         presenter?.showCityView()
     }
     
     @IBAction func linkActionButton(_ sender: UIButton) {
-        
-        presenter?.showLinkView()
+        presenter?.openLinkSafary()
+       // presenter?.showLinkView()
     }
     
     @IBOutlet weak var weatherTable: UITableView!
@@ -29,9 +30,21 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
     
     var presenter: WeatherPresenterProtocol?
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.cornerRadiusAll()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        super.viewWillAppear(animated)
+    }
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         weatherTable.delegate = self
         weatherTable.dataSource = self
         for item in cellIdentifier {
@@ -39,7 +52,23 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
         }
         weatherTable.rowHeight = UITableView.automaticDimension
         weatherTable.tableFooterView = UIView(frame: .zero)
+        
+        update()
     }
+    
+    func update() {
+        DispatchQueue.main.async {
+            self.cityLabel.text = self.presenter?.getCityName()
+            self.weatherTable.reloadData()
+        }
+    }
+}
+
+extension WeatherViewController: WeatherDelegate {
+    func getForecasts(city: CityModel?) {
+        self.presenter?.getForecasts(city: city)
+    }
+    
 }
 
 extension WeatherViewController:  UITableViewDataSource, UITableViewDelegate {
@@ -59,13 +88,30 @@ extension WeatherViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = getIdentifier(section: indexPath.section)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        if let cell = cell as? AdditionInfoCell{
+            cell.configCell(index: indexAddInfoSelect)
+        }
+        else if let cell = cell as? DayForecastCell {
+            cell.configCell(row: indexPath.row)
+        }
+        else if let cell = cell as? TimeForecastCell {
+            cell.configCell()
+        }
+        else if let cell = cell as? CurrentTempCell {
+            cell.configCell()
+        }
+        
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+}
+
+extension WeatherViewController: SFSafariViewControllerDelegate {
+    
 }
