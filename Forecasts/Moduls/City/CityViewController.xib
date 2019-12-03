@@ -33,7 +33,7 @@
                     <rect key="frame" x="169" y="315" width="37" height="37"/>
                 </activityIndicatorView>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.057025447739999999" blue="0.068362611300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="j3g-2h-8mf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5TR-Tr-8Er"/>
                 <constraint firstItem="nyj-Ok-slb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="6fr-Hm-IOz"/>

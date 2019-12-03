@@ -22,6 +22,23 @@ class CityPresenter: CityPresenterProtocol {
         self.router = router
     }
 
+    func checkStart() {
+        guard countIsEmpty() else {  self.update(); return }
+        let cityDef = CitysData.shared.getUserDef()
+        if cityDef.count > 0 {
+            for item in cityDef {
+                self.addCity(citySearch: item)
+            }
+        }
+        else {
+            showSearchCityView()
+        }
+    }
+    
+    func countIsEmpty()->Bool {
+        return countCell() == 0
+    }
+    
     func countCell()->Int {
         return CitysData.shared.citys.count
     }
@@ -31,12 +48,16 @@ class CityPresenter: CityPresenterProtocol {
     }
     
     func closeView(index: Int) {
-        
+        CitysData.shared.saveUserDef(save: CitysData.shared.citys)
         router.closeView(city: CitysData.shared.citys[index])
     }
     
     func addCity(citySearch: CitySearchModel?) {
         self.interactor?.addCity(citySearch: citySearch)
+    }
+    
+    func refreshTempr() {
+        self.interactor?.refreshTempr()
     }
     
     func getNameCity(index: Int)->String {

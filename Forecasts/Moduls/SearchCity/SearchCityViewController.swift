@@ -23,12 +23,11 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.cornerRadiusAll()
     }
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.startAnimating()
+         self.activityIndicator.stopAnimating()
         searchBar.becomeFirstResponder()
         
         cityTable.delegate = self
@@ -65,12 +64,8 @@ extension SearchCityViewController: UISearchBarDelegate {
     }
     
     private func getSearch(textSearchBar: String?) {
-        if let textSearch = textSearchBar, textSearch.count > 2 {
-            self.presenter?.searchData(searchStr: textSearch)
-        }
-        else {
-            self.presenter?.searchDataEmpty()
-        }
+         self.activityIndicator.startAnimating()
+         self.presenter?.searchData(searchStr: textSearchBar)
     }
 }
 

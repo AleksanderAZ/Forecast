@@ -25,15 +25,16 @@ protocol CityPresenterProtocol: class {
     func getTemprCity(index: Int)->String
     func deleteCity(index: Int)
     func update()
+    func checkStart()
+    func refreshTempr()
 }
 
 //MARK: Interactor -
 protocol CityInteractorProtocol: class {
-
     var presenter: CityPresenterProtocol?  { get set }
-    
     func addCity(citySearch: CitySearchModel?)
     func deleteCity(index: Int)
+    func refreshTempr()
 }
 
 //MARK: View -

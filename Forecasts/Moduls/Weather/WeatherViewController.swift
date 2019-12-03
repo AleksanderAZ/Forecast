@@ -34,7 +34,6 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.cornerRadiusAll()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -45,25 +44,27 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.startAnimating()
+    
         weatherTable.delegate = self
         weatherTable.dataSource = self
         for item in cellIdentifier {
             weatherTable.register(UINib(nibName: item, bundle: nil), forCellReuseIdentifier: item)
         }
-        weatherTable.rowHeight = UITableView.automaticDimension
+        //weatherTable.rowHeight = UITableView.automaticDimension
+        //weatherTable.estimatedRowHeight = 200
         weatherTable.tableFooterView = UIView(frame: .zero)
         
         if presenter?.getCityName() == "" {
             presenter?.showCityView()
         }
-        update()
+        //update()
     }
     
     func update() {
         DispatchQueue.main.async {
-            self.cityLabel.text = self.presenter?.getCityName()
             self.weatherTable.reloadData()
+            self.weatherTable.separatorStyle = .none
+            self.cityLabel.text = self.presenter?.getCityName()
             self.activityIndicator.stopAnimating()
         }
     }
@@ -93,18 +94,22 @@ extension WeatherViewController:  UITableViewDataSource, UITableViewDelegate {
         let identifier = getIdentifier(section: indexPath.section)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let cell = cell as? AdditionInfoCell{
-            if let index = presenter?.getIndexAddInfoSelect() {
-              cell.configCell(index: index)
-            }
+            let text = self.presenter?.getAddInfo() ?? ""
+            cell.configCell(text: text)
         }
         else if let cell = cell as? DayForecastCell {
-            cell.configCell(row: indexPath.row)
+            let day = self.presenter?.getDay(index: indexPath.row) ?? ""
+            let cloud = self.presenter?.getDayCloud(index: indexPath.row) ?? ""
+            let tempr = self.presenter?.getDayTempr(index: indexPath.row) ?? ""
+            cell.configCell(day: day, cloud: cloud, tempr: tempr)
         }
         else if let cell = cell as? TimeForecastCell {
-            cell.configCell()
+            //cell.frame.size.height = 300
+            cell.configCell(presenter: self.presenter)
         }
         else if let cell = cell as? CurrentTempCell {
-            cell.configCell()
+            let tempr = self.presenter?.getCityTempr() ?? ""
+            cell.configCell(tempr: tempr)
         }
         
         return cell

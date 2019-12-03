@@ -12,8 +12,8 @@ import Foundation
 
 //MARK: Wireframe -
 protocol WeatherWireframeProtocol: class {
-    func showCityView()
-    func showLinkView(cityName: String)
+    func showCityView(cityName: String)
+    func showLinkView()
     func openLinkSafary(link: String)
 }
 //MARK: Presenter -
@@ -28,7 +28,10 @@ protocol WeatherPresenterProtocol: class {
     func getCityTempr()->String
     func countHour()->Int
     func getHour(index: Int)->HourWeather?
-    func getIndexAddInfoSelect()->Int
+    func getDay(index: Int)->String
+    func getDayCloud(index: Int)->String
+    func getDayTempr(index: Int)->String
+    func getAddInfo()->String
 }
 
 //MARK: Interactor -
@@ -40,6 +43,7 @@ protocol WeatherInteractorProtocol: class {
     func getDay(index: Int)->DayWeather?
     func getHour(index: Int)->HourWeather?
     func getCurrentCity()->CityModel?
+    
 }
 
 //MARK: View -

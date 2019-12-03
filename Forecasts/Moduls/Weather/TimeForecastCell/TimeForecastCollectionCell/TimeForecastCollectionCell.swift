@@ -9,8 +9,6 @@
 import UIKit
 
 class TimeForecastCollectionCell: UICollectionViewCell {
-
-    var presenter: WeatherPresenterProtocol?
     
     @IBOutlet weak var hourLabel: UILabel!
     @IBOutlet weak var cloudLabel: UILabel!
@@ -20,8 +18,9 @@ class TimeForecastCollectionCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func configCell(index: Int) {
-        let hour = self.presenter?.getHour(index: index)
-        
+    func configCell(hour: String, cloud: String, tempr: String) {
+        hourLabel.text = hour
+        cloudLabel.text = cloud
+        temprLabel.text = tempr
     }
 }

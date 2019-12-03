@@ -17,9 +17,7 @@ class WeatherPresenter: WeatherPresenterProtocol {
     private let router: WeatherWireframeProtocol
     
     var indexAddInfoSelect: Int = 0
-    func getIndexAddInfoSelect()->Int {
-        return indexAddInfoSelect
-    }
+   
     init(interface: WeatherViewProtocol, interactor: WeatherInteractorProtocol?, router: WeatherWireframeProtocol) {
         self.view = interface
         self.interactor = interactor
@@ -27,11 +25,12 @@ class WeatherPresenter: WeatherPresenterProtocol {
     }
     
     func showCityView() {
-        router.showCityView()
+        let cityName = getCityName()
+        router.showCityView(cityName: cityName)
     }
+    
     func showLinkView() {
-        let cityName = "CurrentCity"
-        router.showLinkView(cityName: cityName)
+        router.showLinkView()
     }
     
     func openLinkSafary() {
@@ -58,16 +57,38 @@ class WeatherPresenter: WeatherPresenterProtocol {
         self.view?.update()
     }
     
-    private func getDay(index: Int)->DayWeather? {
-        return self.interactor?.getDay(index: index)
+    func getDay(index: Int)->String {
+        guard let day = self.interactor?.getDay(index: index) else { return ""}
+        return day.day
+    }
+    
+    func getAddInfo()->String {
+        guard let day = self.interactor?.getDay(index: indexAddInfoSelect) else { return ""}
+        let sunRise = day.sunRise
+        let sunSet = day.sunSet
+        return "sunRise: " + sunRise + " - sunSet: " + sunSet
+    }
+    
+    func getDayCloud(index: Int)->String {
+        guard let day = self.interactor?.getDay(index: index) else { return ""}
+        return day.icon
+    }
+    
+    func getDayTempr(index: Int)->String {
+        guard let day = self.interactor?.getDay(index: index) else { return ""}
+        return day.temp
     }
     
     func getHour(index: Int)->HourWeather? {
         return self.interactor?.getHour(index: index)
     }
+    
     func getCityName()->String {
-        guard let currentCity = interactor?.getCurrentCity() else { return ""}
-        return currentCity.city.cityName
+        
+        if let currentCity = interactor?.getCurrentCity() {
+            return currentCity.city.cityName
+        }
+        return ""
     }
     
     func getCityTempr()->String {
@@ -77,14 +98,5 @@ class WeatherPresenter: WeatherPresenterProtocol {
     
     func countHour()->Int {
         return self.interactor?.getHourCount() ?? 0
-    }
-}
-
-extension WeatherPresenter: AdditionInfoCellProtocol {
-    func getAddInfo(index: Int)->String {
-        let dayInfo = getDay(index: index)
-        let sunRise = dayInfo?.sunRise ?? ""
-        let sunSet = dayInfo?.sunSet ?? ""
-        return "sunRise: " + sunRise + " - sunSet: " + sunSet
     }
 }

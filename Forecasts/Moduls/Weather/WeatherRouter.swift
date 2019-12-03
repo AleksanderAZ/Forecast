@@ -12,7 +12,6 @@ import UIKit
 import SafariServices
 
 class WeatherRouter: WeatherWireframeProtocol {
-    
     weak var viewController: UIViewController?
     
     static func createModule() -> WeatherViewController {
@@ -30,18 +29,20 @@ class WeatherRouter: WeatherWireframeProtocol {
         return view
     }
     
-    func showCityView() {
+    func showCityView(cityName: String) {
+        
         if let viewCityController = CityRouter.createModule() as? CityViewController {
             if let viewWeatherController = self.viewController as? WeatherViewController {
                 viewCityController.delegate = viewWeatherController
+                viewCityController.navigationItem.title = cityName
                 self.viewController?.navigationController?.pushViewController(viewCityController, animated: true)
             }
         }
     }
     
-    func showLinkView(cityName: String) {
+    func showLinkView() {
         let view = WebViewRouter.createModule()
-        view.navigationController?.navigationBar.topItem?.title = cityName
+        
         self.viewController?.navigationController?.pushViewController(view, animated: true)
     }
     

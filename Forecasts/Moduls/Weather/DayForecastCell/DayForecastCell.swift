@@ -10,6 +10,10 @@ import UIKit
 
 class DayForecastCell: UITableViewCell {
 
+    @IBOutlet weak var tempr: UILabel!
+    @IBOutlet weak var cloud: UILabel!
+    @IBOutlet weak var day: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,8 +25,10 @@ class DayForecastCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configCell(row: Int) {
-        
+    func configCell(day: String, cloud: String, tempr: String) {
+        self.day.text = day
+        self.cloud.text = cloud
+        self.tempr.text = tempr
     }
     
 }

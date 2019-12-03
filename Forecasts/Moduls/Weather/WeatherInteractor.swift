@@ -27,7 +27,7 @@ class WeatherInteractor: WeatherInteractorProtocol {
         }
     }
     func getHour(index: Int)->HourWeather? {
-        if index < getDayCount() {
+        if index < getHourCount() {
             return hourWeather[index]
         }
         else {

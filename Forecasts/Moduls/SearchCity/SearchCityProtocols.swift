@@ -18,7 +18,7 @@ protocol SearchCityWireframeProtocol: class {
 protocol SearchCityPresenterProtocol: class {
     func countCell()->Int
     func updateSearch(resultSearch: [CitySearchModel]?)
-    func searchData(searchStr: String)
+    func searchData(searchStr: String?)
     func getNameCity(index: Int)->String
     func closeView(citySearch: CitySearchModel?)
     func getCity(index: Int)->CitySearchModel?

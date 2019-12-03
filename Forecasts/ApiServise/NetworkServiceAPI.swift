@@ -12,6 +12,7 @@ class NetworkServiceAPI: NSObject, NetworkServiceApiProtocol {
     
     static let shared = NetworkServiceAPI()
     private var sessionDataTask: URLSessionDataTask?
+    private var accountant = 0
     
     internal func request<T: Codable>(_ method: String,_ url: String,_ parameters: [String: String], completion: @escaping (T?, _ error: String?)->()) {
         guard var components = URLComponents(string: url) else { return completion(nil, ErrorInfo.urlIsNil.string) }
@@ -19,6 +20,9 @@ class NetworkServiceAPI: NSObject, NetworkServiceApiProtocol {
         guard let componentsUrl = components.url else { return completion(nil, ErrorInfo.componentsUrlIsNil.string) }
         var request = URLRequest(url: componentsUrl)
         request.httpMethod = method
+        accountant = accountant + 1
+        print("----request accountant =", accountant, "----", request, "------")
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
             guard let data = data, let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode, error == nil else {

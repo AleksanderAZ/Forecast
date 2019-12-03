@@ -13,45 +13,48 @@ import UIKit
 class CityViewController: UIViewController, CityViewProtocol {
 
     @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var cityTable: UITableView!
+    var refreshControl: UIRefreshControl!
     
     let cellIdentifier = "CityCell"
 	var presenter: CityPresenterProtocol?
     weak var delegate: WeatherDelegate?
     
-    @IBOutlet weak var cityTable: UITableView!
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.cornerRadiusAll()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        indicator.startAnimating()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(clickRightButtonBar))
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "🔍", style: .plain, target: self, action: #selector(clickRightButtonBar))
         cityTable.delegate = self
         cityTable.dataSource = self
-        
         cityTable.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-       
         cityTable.rowHeight = UITableView.automaticDimension
         cityTable.tableFooterView = UIView(frame: .zero)
+        cityTable.separatorStyle = .none
+    
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "refresh...")
+        refreshControl.addTarget(self, action: #selector(actionRefresh), for: UIControl.Event.valueChanged)
+        cityTable.addSubview(refreshControl)
         
-        guard let presenter = self.presenter else {return}
-        if presenter.countCell() < 1 {
-            presenter.showSearchCityView()
-        }
+        presenter?.checkStart()
     }
-
+    
+    @objc func actionRefresh() {
+        presenter?.refreshTempr()
+        refreshControl.endRefreshing()
+    }
+    
     @objc func clickRightButtonBar() {
         presenter?.showSearchCityView()
     }
     
     func update() {
         DispatchQueue.main.async {
-            self.cityTable.reloadData()
-            self.indicator.stopAnimating()
+           self.cityTable.reloadData()
+           self.indicator.stopAnimating()
         }
     }
 }
@@ -73,7 +76,6 @@ extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         if let cell = cell as? CityCell {
             cell.nameCity.text = self.presenter?.getNameCity(index: indexPath.row)
@@ -83,10 +85,6 @@ extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //guard let city = presenter?.getCity(index: indexPath.row) else { return }
-        //presenter?.closeView(citySearch: city)
-        print(indexPath.row)
-        
         presenter?.closeView(index: indexPath.row)
     }
     
@@ -94,8 +92,10 @@ extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
         return UITableView.automaticDimension
     }
     
+
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { (action, view, handler) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "🗑", handler: { (action, view, handler) in
             self.presenter?.deleteCity(index: indexPath.row)
         })
         let config = UISwipeActionsConfiguration(actions: [deleteAction])

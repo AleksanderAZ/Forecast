@@ -33,13 +33,21 @@ class CityInteractor: CityInteractorProtocol {
     }
     
     private func updateTempr(index: Int) {
-        if (index < CitysData.shared.citys.count) {
+        var quantity = CitysData.shared.citys.count
+        //test start
+        quantity = 1
+        //test end
+        if (index < quantity) {
             self.request(index: index)
         }
         else {
             guard let presenter = self.presenter else { return }
             presenter.update()
         }
+    }
+    
+    func refreshTempr() {
+        self.updateTempr(index: 0)
     }
     
     func addCity(citySearch: CitySearchModel?) {
@@ -51,7 +59,7 @@ class CityInteractor: CityInteractorProtocol {
             }
         }
         if (isExist == false) {
-            CitysData.shared.citys.append(CityModel(city: citySearch, temp: ""))
+            CitysData.shared.citys.insert(CityModel(city: citySearch, temp: ""), at: 0)
         }
         self.updateTempr(index: 0)
     }
@@ -59,6 +67,4 @@ class CityInteractor: CityInteractorProtocol {
     func deleteCity(index: Int) {
         CitysData.shared.citys.remove(at: index)
     }
-    
-    
 }

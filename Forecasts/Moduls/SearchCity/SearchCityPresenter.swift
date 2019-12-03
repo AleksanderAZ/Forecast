@@ -17,6 +17,8 @@ class SearchCityPresenter: SearchCityPresenterProtocol {
     private let router: SearchCityWireframeProtocol
     var resultSearch: [CitySearchModel]?
     
+    let countCharNotSearch = 2
+    
     init(interface: SearchCityViewProtocol, interactor: SearchCityInteractorProtocol?, router: SearchCityWireframeProtocol) {
         self.view = interface
         self.interactor = interactor
@@ -36,8 +38,13 @@ class SearchCityPresenter: SearchCityPresenterProtocol {
         self.view?.update()
     }
     
-    func searchData(searchStr: String) {
-        self.interactor?.requestSearch(searchStr: searchStr)
+    func searchData(searchStr: String?) {
+        if let textSearch = searchStr, textSearch.count > countCharNotSearch {
+            self.interactor?.requestSearch(searchStr: textSearch)
+        }
+        else {
+            self.searchDataEmpty()
+        }
     }
     
     func searchDataEmpty() {
