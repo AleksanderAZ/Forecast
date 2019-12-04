@@ -12,7 +12,7 @@ import Foundation
 // MARK: - ForecastHourAPIJSONModel
 struct ForecastHourAPIJSONModel: Codable {
     let dateTime: String?
-    let epochDateTime, weatherIcon: Int?
+    let epochDateTime, icon: Int?
     let iconPhrase: String?
     let hasPrecipitation: Bool?
     let precipitationType, precipitationIntensity: String?
@@ -24,7 +24,7 @@ struct ForecastHourAPIJSONModel: Codable {
     enum CodingKeys: String, CodingKey {
         case dateTime = "DateTime"
         case epochDateTime = "EpochDateTime"
-        case weatherIcon = "WeatherIcon"
+        case icon = "WeatherIcon"
         case iconPhrase = "IconPhrase"
         case hasPrecipitation = "HasPrecipitation"
         case precipitationType = "PrecipitationType"
@@ -39,7 +39,7 @@ struct ForecastHourAPIJSONModel: Codable {
 
 // MARK: - Temperature
 struct Temperature: Codable {
-    let value: Int?
+    let value: Double?
     let unit: String?
     let unitType: Int?
     

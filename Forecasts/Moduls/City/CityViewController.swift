@@ -27,7 +27,9 @@ class CityViewController: UIViewController, CityViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "🔍", style: .plain, target: self, action: #selector(clickRightButtonBar))
+        self.navigationItem.title = "📌"
         cityTable.delegate = self
         cityTable.dataSource = self
         cityTable.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
@@ -80,7 +82,7 @@ extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
             let name = self.presenter?.getNameCity(index: indexPath.row) ?? ""
             let tempr = self.presenter?.getTemprCity(index: indexPath.row) ?? ""
             cell.nameCity.text = name
-            cell.tempr.text = tempr + " tº"
+            cell.tempr.text = tempr + " Cº"
         }
         return cell
     }

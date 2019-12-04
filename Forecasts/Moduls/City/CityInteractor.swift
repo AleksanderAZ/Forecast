@@ -21,13 +21,21 @@ class CityInteractor: CityInteractorProtocol {
             guard let self = self else { return }
             guard let result = result else { print(error as Any); return }
             var cityTempr: String
+            var cityLink: String
             if let tempr = result.first?.temperature?.metric?.value {
                  cityTempr = "\(tempr)"
             }
             else {
                 cityTempr = "?"
             }
+            if let link = result.first?.mobileLink {
+                cityLink = link
+            }
+            else {
+                cityLink = RequestsDataAPI.webURL
+            }
             CitysData.shared.citys[index].temp = cityTempr
+            CitysData.shared.citys[index].link = cityLink
             self.updateTempr(index: index + 1)
         }
     }
@@ -57,7 +65,7 @@ class CityInteractor: CityInteractorProtocol {
             }
         }
         if (isExist == false) {
-            CitysData.shared.citys.insert(CityModel(city: citySearch, temp: ""), at: 0)
+            CitysData.shared.citys.insert(CityModel(city: citySearch, temp: "", link: ""), at: 0)
         }
         self.updateTempr(index: 0)
     }

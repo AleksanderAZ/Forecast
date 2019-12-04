@@ -18,9 +18,9 @@ class TimeForecastCollectionCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func configCell(hour: String, cloud: String, tempr: String) {
+    func configCell(hour: String, cloud: String, tempr: String, icon: String) {
         hourLabel.text = hour
         cloudLabel.text = cloud
-        temprLabel.text = tempr + " tº"
+        temprLabel.text = tempr + " Cº"
     }
 }

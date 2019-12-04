@@ -43,6 +43,10 @@ class WeatherInteractor: WeatherInteractorProtocol {
         return self.currentCity
     }
     
+    func getMobilLink()->String? {
+        return self.currentCity?.link
+    }
+    
     private func update() {
         guard let presenter = self.presenter else { return }
         guard let _ = self.currentCity else { return }
@@ -79,14 +83,16 @@ class WeatherInteractor: WeatherInteractorProtocol {
         var  dayWeather = [DayWeather]()
         guard let dailyForecasts = result?.dailyForecasts else { return}
         for item in dailyForecasts {
-            guard let day = item.date else {return}
-            guard let icon = item.day?.cloudCover else {return}
+            guard let dayIso = item.date else {return}
+            guard let iconPhrase = item.day?.iconPhrase else {return}
+            guard let icon = item.day?.icon else {return}
             guard let tempMax = item.temperature?.maximum?.value else {return}
             guard let tempMin = item.temperature?.minimum?.value else {return}
-            let temp = "\((tempMin+tempMax)/2)"
+            let temp = String(format: "%.1f",(tempMin+tempMax)/2)
             guard let sunRise = item.sun?.rise else {return}
             guard let sunSet = item.sun?.sunSet else {return}
-            let oneDay = DayWeather(day: day, icon: "\(icon)", temp: temp, sunRise: sunRise, sunSet: sunSet)
+            let day = getFormatDate(isoDate: dayIso)
+            let oneDay = DayWeather(day: day, icon: "\(icon)", temp: temp, sunRise: sunRise, sunSet: sunSet, iconPhrase: iconPhrase)
             dayWeather.append(oneDay)
         }
         self.dayWeather = dayWeather
@@ -96,10 +102,13 @@ class WeatherInteractor: WeatherInteractorProtocol {
         var  hourWeather = [HourWeather]()
         guard let forecastHour = result else { return}
         for item in forecastHour {
-            guard let hour = item.dateTime else {return}
-            guard let icon = item.iconPhrase else { return}
-            guard let temp = item.temperature?.value else {return}
-            let oneHour =  HourWeather(hour: hour, icon: icon, temp: "\(temp)")
+            guard let hourIso = item.dateTime else {return}
+            guard let icon = item.icon else { return}
+            guard let iconPhrase = item.iconPhrase else { return}
+            guard let temprIso = item.temperature?.value else {return}
+            let hour = getformatHour(isoDate: hourIso)
+            let tempr = String(format: "%.1f",temprIso)
+            let oneHour =  HourWeather(hour: hour, icon: "\(icon)", temp: String(format: "%.1f",tempr), iconPhrase: iconPhrase)
             hourWeather.append(oneHour)
         }
         self.hourWeather = hourWeather
@@ -107,5 +116,41 @@ class WeatherInteractor: WeatherInteractorProtocol {
     
     func getHourCount()->Int {
         return hourWeather.count
+    }
+    
+    func getFormatDate(isoDate: String)->String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        let formattedDate = dateFormatter.date(from: isoDate)!
+        let calendar = Calendar.current
+        let day = calendar.component(.day, from: formattedDate)
+        let year = calendar.component(.year, from: formattedDate)
+        let mounth = calendar.component(.month, from: formattedDate)
+        let dayReturn = String(format: "%02d.%02d.%04d", day, mounth, year)
+        return dayReturn
+    }
+    
+    func getformatHour(isoDate: String)->String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        let formattedDate = dateFormatter.date(from: isoDate)!
+        let calendar = Calendar.current
+        let hours = String(format: "%02d:00",calendar.component(.hour, from: formattedDate))
+        
+        return hours
+    }
+    
+    func getImage(index: Int)->Data? {
+        let url = RequestsDataAPI.imadeURL + String(format: "%02d-s.png", index)
+        print(url)
+        guard let imgURL = URL(string: url) else {return nil}
+        guard let imgData = NSData(contentsOf: imgURL) else { return nil}
+    
+        return imgData as Data
+        //guard let image = UIImage(data: imgData as Data) else { return }
+        
+        //img.image = image
     }
 }

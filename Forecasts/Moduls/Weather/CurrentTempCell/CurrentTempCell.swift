@@ -20,6 +20,6 @@ class CurrentTempCell: UITableViewCell {
     }
     
     func configCell(tempr: String) {
-        self.temprLabel.text = tempr + " tº"
+        self.temprLabel.text = tempr + " Cº"
     }
 }

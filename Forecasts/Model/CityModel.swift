@@ -17,6 +17,7 @@ struct CitySearchModel {
 struct CityModel {
     let city: CitySearchModel
     var temp: String
+    var link: String
 }
 
 

@@ -34,7 +34,8 @@ class WeatherPresenter: WeatherPresenterProtocol {
     }
     
     func openLinkSafary() {
-        self.router.openLinkSafary(link: RequestsDataAPI.webURL)
+        guard let link = self.interactor?.getMobilLink() else {return }
+        self.router.openLinkSafary(link: link)
     }
     
     func countCell(section: Int)->Int {
@@ -53,6 +54,11 @@ class WeatherPresenter: WeatherPresenterProtocol {
         self.interactor?.getForecasts(city: city)
     }
 
+    func refreshForecasts() {
+        guard let currentCity = interactor?.getCurrentCity() else { return }
+        self.interactor?.getForecasts(city: currentCity)
+    }
+    
     func update() {
         self.view?.update()
     }
@@ -71,12 +77,17 @@ class WeatherPresenter: WeatherPresenterProtocol {
     
     func getDayCloud(index: Int)->String {
         guard let day = self.interactor?.getDay(index: index) else { return ""}
-        return day.icon
+        return day.iconPhrase
     }
     
     func getDayTempr(index: Int)->String {
         guard let day = self.interactor?.getDay(index: index) else { return ""}
         return day.temp
+    }
+    
+    func getDayIcon(index: Int)->String {
+        guard let day = self.interactor?.getDay(index: index) else { return ""}
+        return day.icon
     }
     
     func getHour(index: Int)->HourWeather? {

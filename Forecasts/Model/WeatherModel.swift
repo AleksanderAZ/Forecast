@@ -18,6 +18,7 @@ struct HourWeather {
     let hour: String
     let icon: String
     let temp: String
+    let iconPhrase: String
 }
 
 struct DayWeather {
@@ -26,5 +27,6 @@ struct DayWeather {
     let temp: String
     let sunRise: String
     let sunSet: String
+    let iconPhrase: String
 }
 

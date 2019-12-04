@@ -60,6 +60,7 @@
 		A48E5B872372B4DF0016BCBB /* SearchCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E5B852372B4DF0016BCBB /* SearchCity.xib */; };
 		A48E5B8B2372CC030016BCBB /* TimeForecastCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5B892372CC030016BCBB /* TimeForecastCollectionCell.swift */; };
 		A48E5B8C2372CC030016BCBB /* TimeForecastCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E5B8A2372CC030016BCBB /* TimeForecastCollectionCell.xib */; };
+		A4D3F5C4239811F200531B0F /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3F5C3239811F200531B0F /* LoadImage.swift */; };
 		A4F0C3EA2380122700663A6C /* CityApiJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0C3E92380122700663A6C /* CityApiJsonModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +141,7 @@
 		A48E5B852372B4DF0016BCBB /* SearchCity.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCity.xib; sourceTree = "<group>"; };
 		A48E5B892372CC030016BCBB /* TimeForecastCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeForecastCollectionCell.swift; sourceTree = "<group>"; };
 		A48E5B8A2372CC030016BCBB /* TimeForecastCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeForecastCollectionCell.xib; sourceTree = "<group>"; };
+		A4D3F5C3239811F200531B0F /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		A4F0C3E92380122700663A6C /* CityApiJsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityApiJsonModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,6 +175,7 @@
 			children = (
 				A4386317237DB4B800F03074 /* NetworkServiceAPI.swift */,
 				A438631B237DBBB100F03074 /* NetworkServiceAPIProtocol.swift */,
+				A4D3F5C3239811F200531B0F /* LoadImage.swift */,
 			);
 			path = ApiServise;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				A48E5B8B2372CC030016BCBB /* TimeForecastCollectionCell.swift in Sources */,
 				A4F0C3EA2380122700663A6C /* CityApiJsonModel.swift in Sources */,
 				A44CDF7F2371EF90001A8F91 /* WebViewRouter.swift in Sources */,
+				A4D3F5C4239811F200531B0F /* LoadImage.swift in Sources */,
 				A44CDF7D2371EF90001A8F91 /* WebViewPresenter.swift in Sources */,
 				A48E5B802372B4B90016BCBB /* SearchCityProtocols.swift in Sources */,
 				A44CDF652371EB59001A8F91 /* CityProtocols.swift in Sources */,
