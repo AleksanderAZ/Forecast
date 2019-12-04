@@ -21,6 +21,6 @@ class TimeForecastCollectionCell: UICollectionViewCell {
     func configCell(hour: String, cloud: String, tempr: String) {
         hourLabel.text = hour
         cloudLabel.text = cloud
-        temprLabel.text = tempr
+        temprLabel.text = tempr + " tº"
     }
 }

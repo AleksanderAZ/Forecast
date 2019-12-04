@@ -12,29 +12,27 @@ import UIKit
 import SafariServices
 
 class WeatherViewController: UIViewController, WeatherViewProtocol {
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    let cellIdentifier = [ "CurrentTempCell", "TimeForecastCell", "DayForecastCell", "AdditionInfoCell"]
+    @IBOutlet weak var weatherTable: UITableView!
+    @IBOutlet weak var cityLabel: UILabel!
     
     @IBAction func listActionButton(_ sender: UIButton) {
         presenter?.showCityView()
     }
     
     @IBAction func linkActionButton(_ sender: UIButton) {
-        presenter?.openLinkSafary()
-       // presenter?.showLinkView()
+        presenter?.openLinkSafary()  // presenter?.showLinkView()
     }
-    
-    @IBOutlet weak var weatherTable: UITableView!
-    @IBOutlet weak var cityLabel: UILabel!
-    
-    var presenter: WeatherPresenterProtocol?
 
+    var presenter: WeatherPresenterProtocol?
+    let cellIdentifier = [ "CurrentTempCell", "TimeForecastCell", "DayForecastCell", "AdditionInfoCell"]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        if presenter?.getCityName() == "" {
+            presenter?.showCityView()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,20 +42,14 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-    
         weatherTable.delegate = self
         weatherTable.dataSource = self
         for item in cellIdentifier {
             weatherTable.register(UINib(nibName: item, bundle: nil), forCellReuseIdentifier: item)
         }
-        //weatherTable.rowHeight = UITableView.automaticDimension
-        //weatherTable.estimatedRowHeight = 200
+        weatherTable.separatorStyle = .none
         weatherTable.tableFooterView = UIView(frame: .zero)
-        
-        if presenter?.getCityName() == "" {
-            presenter?.showCityView()
-        }
-        //update()
+        weatherTable.tableHeaderView = UIView(frame: .zero)
     }
     
     func update() {
@@ -104,14 +96,12 @@ extension WeatherViewController:  UITableViewDataSource, UITableViewDelegate {
             cell.configCell(day: day, cloud: cloud, tempr: tempr)
         }
         else if let cell = cell as? TimeForecastCell {
-            //cell.frame.size.height = 300
             cell.configCell(presenter: self.presenter)
         }
         else if let cell = cell as? CurrentTempCell {
             let tempr = self.presenter?.getCityTempr() ?? ""
             cell.configCell(tempr: tempr)
         }
-        
         return cell
     }
     

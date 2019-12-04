@@ -14,7 +14,6 @@ protocol CustomErrorProtocol: Error {
 }
 
 protocol NetworkServiceApiProtocol {
-    
     func request<T: Codable>(_ method: String,_ url: String,_ parameters: [String: String], completion: @escaping (T?, _ error: String?)->())
     func cancelRequests()
     func loadAPIRequest<T: Codable>(pathURL: String, searchText: String, completion: @escaping (T?, String?)->())

@@ -22,6 +22,7 @@ class CityViewController: UIViewController, CityViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        presenter?.checkStart()
     }
     
     override func viewDidLoad() {
@@ -38,8 +39,6 @@ class CityViewController: UIViewController, CityViewProtocol {
         refreshControl.attributedTitle = NSAttributedString(string: "refresh...")
         refreshControl.addTarget(self, action: #selector(actionRefresh), for: UIControl.Event.valueChanged)
         cityTable.addSubview(refreshControl)
-        
-        presenter?.checkStart()
     }
     
     @objc func actionRefresh() {
@@ -78,8 +77,10 @@ extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         if let cell = cell as? CityCell {
-            cell.nameCity.text = self.presenter?.getNameCity(index: indexPath.row)
-            cell.tempr.text = self.presenter?.getTemprCity(index: indexPath.row)
+            let name = self.presenter?.getNameCity(index: indexPath.row) ?? ""
+            let tempr = self.presenter?.getTemprCity(index: indexPath.row) ?? ""
+            cell.nameCity.text = name
+            cell.tempr.text = tempr + " tº"
         }
         return cell
     }
@@ -91,9 +92,7 @@ extension CityViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
 
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "🗑", handler: { (action, view, handler) in
             self.presenter?.deleteCity(index: indexPath.row)

@@ -27,8 +27,8 @@ protocol SearchCityPresenterProtocol: class {
 
 //MARK: Interactor -
 protocol SearchCityInteractorProtocol: class {
-
     var presenter: SearchCityPresenterProtocol?  { get set }
+    
     func searchDataEmpty()
     func requestSearch(searchStr: String)
     
@@ -36,7 +36,6 @@ protocol SearchCityInteractorProtocol: class {
 
 //MARK: View -
 protocol SearchCityViewProtocol: class {
-
   var presenter: SearchCityPresenterProtocol?  { get set }
     
   func update()

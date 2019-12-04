@@ -15,7 +15,6 @@ class SearchCityRouter: SearchCityWireframeProtocol {
     weak var viewController: UIViewController?
     
     static func createModule() -> UIViewController {
-        // Change to get view from storyboard if not using progammatic UI
         let view = SearchCityViewController(nibName: nil, bundle: nil)
         let interactor = SearchCityInteractor()
         let router = SearchCityRouter()
@@ -32,6 +31,6 @@ class SearchCityRouter: SearchCityWireframeProtocol {
         if let viewController = self.viewController as? SearchCityViewController {
             viewController.delegate?.getCity(citySearch: citySearch)
         }
-        self.viewController?.dismiss(animated: true, completion: nil)   //navigationController?.popViewController(animated: true)
+        self.viewController?.dismiss(animated: true, completion: nil)
     }
 }

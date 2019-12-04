@@ -11,7 +11,7 @@ import Foundation
 class CitysData {
     var  citys = [CityModel]()
     var  citysSearch = [CitySearchModel]()
-    let quantity = 1
+    let quantityMax = 1
     
     static let shared = CitysData()
     
@@ -19,7 +19,7 @@ class CitysData {
     }
     
     func saveUserDef(save: [CityModel]) {
-        var quantity = self.quantity
+        var quantity = self.quantityMax
         
         if save.count > quantity {
             quantity = save.count
@@ -33,7 +33,7 @@ class CitysData {
     }
     
     func getUserDef()->[CitySearchModel] {
-        var quantity = self.quantity
+        let quantity = self.quantityMax
         var cityDef = [CitySearchModel]()
         
         for i in 0..<quantity {

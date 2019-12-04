@@ -50,7 +50,6 @@
 		A44CDF9D2371FB8A001A8F91 /* CurrentTempCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44CDF9B2371FB8A001A8F91 /* CurrentTempCell.xib */; };
 		A44CDFA12371FBE8001A8F91 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44CDF9F2371FBE8001A8F91 /* CityCell.swift */; };
 		A44CDFA22371FBE8001A8F91 /* CityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44CDFA02371FBE8001A8F91 /* CityCell.xib */; };
-		A4635E112390AD3500BD91A4 /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4635E102390AD3500BD91A4 /* Extention.swift */; };
 		A48E5B7E2372B4B90016BCBB /* SearchCityInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5B782372B4B90016BCBB /* SearchCityInteractor.swift */; };
 		A48E5B7F2372B4B90016BCBB /* SearchCityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5B792372B4B90016BCBB /* SearchCityPresenter.swift */; };
 		A48E5B802372B4B90016BCBB /* SearchCityProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E5B7A2372B4B90016BCBB /* SearchCityProtocols.swift */; };
@@ -131,7 +130,6 @@
 		A44CDF9B2371FB8A001A8F91 /* CurrentTempCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentTempCell.xib; sourceTree = "<group>"; };
 		A44CDF9F2371FBE8001A8F91 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		A44CDFA02371FBE8001A8F91 /* CityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCell.xib; sourceTree = "<group>"; };
-		A4635E102390AD3500BD91A4 /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		A48E5B782372B4B90016BCBB /* SearchCityInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityInteractor.swift; sourceTree = "<group>"; };
 		A48E5B792372B4B90016BCBB /* SearchCityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityPresenter.swift; sourceTree = "<group>"; };
 		A48E5B7A2372B4B90016BCBB /* SearchCityProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityProtocols.swift; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 		A44CDF1B2371E992001A8F91 /* Forecasts */ = {
 			isa = PBXGroup;
 			children = (
-				A4635E0F2390AD1C00BD91A4 /* Extention */,
 				A4386316237DB44D00F03074 /* Model */,
 				A4386315237DB42E00F03074 /* ApiServise */,
 				A4F0C3EB2380197A00663A6C /* Moduls */,
@@ -367,14 +364,6 @@
 				A48E5B852372B4DF0016BCBB /* SearchCity.xib */,
 			);
 			path = SearchCityCell;
-			sourceTree = "<group>";
-		};
-		A4635E0F2390AD1C00BD91A4 /* Extention */ = {
-			isa = PBXGroup;
-			children = (
-				A4635E102390AD3500BD91A4 /* Extention.swift */,
-			);
-			path = Extention;
 			sourceTree = "<group>";
 		};
 		A48E5B882372CB480016BCBB /* TimeForecastCollectionCell */ = {
@@ -562,7 +551,6 @@
 				A44CDF7D2371EF90001A8F91 /* WebViewPresenter.swift in Sources */,
 				A48E5B802372B4B90016BCBB /* SearchCityProtocols.swift in Sources */,
 				A44CDF652371EB59001A8F91 /* CityProtocols.swift in Sources */,
-				A4635E112390AD3500BD91A4 /* Extention.swift in Sources */,
 				A44CDF7E2371EF90001A8F91 /* WebViewProtocols.swift in Sources */,
 				A40B1E4B238C13A800F66459 /* ForecastHourApiJsonModel.swift in Sources */,
 				A44CDF572371EB33001A8F91 /* WeatherInteractor.swift in Sources */,

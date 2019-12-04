@@ -28,14 +28,12 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
 	override func viewDidLoad() {
         super.viewDidLoad()
          self.activityIndicator.stopAnimating()
+        searchBar.delegate = self
         searchBar.becomeFirstResponder()
-        
         cityTable.delegate = self
         cityTable.dataSource = self
-        searchBar.delegate = self
-        
+       
         cityTable.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        
         cityTable.rowHeight = UITableView.automaticDimension
         cityTable.tableFooterView = UIView(frame: .zero)
     }
@@ -46,7 +44,6 @@ class SearchCityViewController: UIViewController, SearchCityViewProtocol {
             self.activityIndicator.stopAnimating()
         }
     }
-    
 }
 
 extension SearchCityViewController: UISearchBarDelegate {
@@ -80,7 +77,6 @@ extension SearchCityViewController:  UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         if let cell = cell as? SearchCity {
             cell.nameCity.text = self.presenter?.getNameCity(index: indexPath.row)
@@ -96,5 +92,4 @@ extension SearchCityViewController:  UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-
 }

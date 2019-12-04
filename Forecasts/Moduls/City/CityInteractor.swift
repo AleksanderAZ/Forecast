@@ -33,10 +33,8 @@ class CityInteractor: CityInteractorProtocol {
     }
     
     private func updateTempr(index: Int) {
-        var quantity = CitysData.shared.citys.count
-        //test start
-        quantity = 1
-        //test end
+        let quantity = CitysData.shared.citys.count
+
         if (index < quantity) {
             self.request(index: index)
         }

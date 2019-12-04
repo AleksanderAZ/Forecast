@@ -17,25 +17,10 @@ class TimeForecastCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-       // self.frame.size.height = 400
-        //collectionTimeWeather.frame.size.height = 380
-        //collectionLayout.estimatedItemSize.height = 380
-       // collectionLayout.itemSize.height = 200
-        
-        
-        
         collectionTimeWeather.delegate = self
         collectionTimeWeather.dataSource = self
         collectionTimeWeather.register(UINib(nibName: "TimeForecastCollectionCell", bundle: nil), forCellWithReuseIdentifier: "TimeForecastCollectionCell")
         collectionTimeWeather.alwaysBounceHorizontal = true
-
-        //self.frame.size.height = 400
-        //collectionTimeWeather.frame.size.height = 380
-        //collectionLayout.estimatedItemSize.height = cell.frame.size.height + 8
-        print("-2-Layout--", collectionLayout.estimatedItemSize.height)
-        print("--tableCell--", self.frame.size.height)
-        print("--collectionView--", collectionTimeWeather.frame.size.height)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -49,6 +34,7 @@ class TimeForecastCell: UITableViewCell {
 }
 
 extension TimeForecastCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.presenter?.countHour() ?? 0
     }
@@ -64,20 +50,11 @@ extension TimeForecastCell: UICollectionViewDelegate, UICollectionViewDataSource
             cell.configCell(hour: hour, cloud: cloud, tempr: tempr)
         }
         
-        if (self.frame.size.height < cell.frame.size.height) {
-            //self.frame.size.height = cell.frame.size.height + 32
-            //collectionView.frame.size.height = cell.frame.size.height + 16
-            //collectionLayout.estimatedItemSize.height = cell.frame.size.height + 8
-            print("-3-Layout--", collectionLayout.estimatedItemSize.height)
-            print("--tableCell--", self.frame.size.height)
-            print("--collectionView--", collectionTimeWeather.frame.size.height)
-        }
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: 120, height: 120)
+        let size = CGSize(width: 150, height: 120)
         
         return size
     }
