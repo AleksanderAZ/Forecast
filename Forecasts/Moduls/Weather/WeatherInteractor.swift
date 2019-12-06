@@ -91,8 +91,10 @@ class WeatherInteractor: WeatherInteractorProtocol {
             let temp = String(format: "%.1f",(tempMin+tempMax)/2)
             guard let sunRise = item.sun?.rise else {return}
             guard let sunSet = item.sun?.sunSet else {return}
-            let day = getFormatDate(isoDate: dayIso)
-            let oneDay = DayWeather(day: day, icon: "\(icon)", temp: temp, sunRise: sunRise, sunSet: sunSet, iconPhrase: iconPhrase)
+            let sunRiseTime = getFormatTime(strDate: sunRise)
+            let sunsetTime = getFormatTime(strDate: sunSet)
+            let day = getFormatDate(strDate: dayIso)
+            let oneDay = DayWeather(day: day, icon: "\(icon)", tempr: temp, sunRise: sunRiseTime, sunSet: sunsetTime, iconPhrase: iconPhrase)
             dayWeather.append(oneDay)
         }
         self.dayWeather = dayWeather
@@ -106,9 +108,9 @@ class WeatherInteractor: WeatherInteractorProtocol {
             guard let icon = item.icon else { return}
             guard let iconPhrase = item.iconPhrase else { return}
             guard let temprIso = item.temperature?.value else {return}
-            let hour = getformatHour(isoDate: hourIso)
+            let hour = getFormatHour(strDate: hourIso)
             let tempr = String(format: "%.1f",temprIso)
-            let oneHour =  HourWeather(hour: hour, icon: "\(icon)", temp: String(format: "%.1f",tempr), iconPhrase: iconPhrase)
+            let oneHour =  HourWeather(hour: hour, icon: "\(icon)", tempr: tempr, iconPhrase: iconPhrase)
             hourWeather.append(oneHour)
         }
         self.hourWeather = hourWeather
@@ -118,27 +120,30 @@ class WeatherInteractor: WeatherInteractorProtocol {
         return hourWeather.count
     }
     
-    func getFormatDate(isoDate: String)->String {
+    func getFormatTime(strDate: String)->String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        let formattedDate = dateFormatter.date(from: isoDate)!
-        let calendar = Calendar.current
-        let day = calendar.component(.day, from: formattedDate)
-        let year = calendar.component(.year, from: formattedDate)
-        let mounth = calendar.component(.month, from: formattedDate)
-        let dayReturn = String(format: "%02d.%02d.%04d", day, mounth, year)
-        return dayReturn
+        guard let formattedDate = dateFormatter.date(from: strDate) else {return strDate}
+        dateFormatter.dateFormat = "dd MM yyyy HH:mm"
+        let time: String = dateFormatter.string(from: formattedDate)
+        return time
     }
     
-    func getformatHour(isoDate: String)->String {
+    func getFormatDate(strDate: String)->String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        let formattedDate = dateFormatter.date(from: isoDate)!
-        let calendar = Calendar.current
-        let hours = String(format: "%02d:00",calendar.component(.hour, from: formattedDate))
-        
+        guard let formattedDate = dateFormatter.date(from: strDate) else {return strDate}
+        dateFormatter.dateFormat = "dd MM yyyy"
+        let date: String = dateFormatter.string(from: formattedDate)
+        return date
+    }
+    
+    func getFormatHour(strDate: String)->String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        guard let formattedDate = dateFormatter.date(from: strDate) else {return strDate}
+        dateFormatter.dateFormat = "HH:mm"
+        let hours: String = dateFormatter.string(from: formattedDate)
         return hours
     }
     

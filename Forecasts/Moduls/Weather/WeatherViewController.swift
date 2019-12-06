@@ -24,7 +24,7 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
     }
     
     @IBAction func linkActionButton(_ sender: UIButton) {
-        presenter?.openLinkSafary()  // presenter?.showLinkView()
+        presenter?.openLinkSafary()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +44,7 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
         super.viewDidLoad()
         
         self.navigationItem.title = ""
-        self.navigationItem.backBarButtonItem?.isEnabled = false
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
         weatherTable.delegate = self
         weatherTable.dataSource = self
         for item in cellIdentifier {

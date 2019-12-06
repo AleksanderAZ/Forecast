@@ -36,11 +36,6 @@ class WeatherRouter: WeatherWireframeProtocol {
         }
     }
     
-    func showLinkView() {
-        let view = WebViewRouter.createModule()
-        self.viewController?.navigationController?.pushViewController(view, animated: true)
-    }
-    
     func openLinkSafary(link: String) {
         guard let url = URL(string: link) else { return }
         let controller = SFSafariViewController(url: url)

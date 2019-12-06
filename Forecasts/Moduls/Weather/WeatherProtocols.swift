@@ -13,13 +13,11 @@ import Foundation
 //MARK: Wireframe -
 protocol WeatherWireframeProtocol: class {
     func showCityView(cityName: String)
-    func showLinkView()
     func openLinkSafary(link: String)
 }
 //MARK: Presenter -
 protocol WeatherPresenterProtocol: class {
     func showCityView()
-    func showLinkView()
     func openLinkSafary()
     func countCell(section: Int)->Int
     func getForecasts(city: CityModel?)

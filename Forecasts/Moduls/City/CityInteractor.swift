@@ -34,7 +34,7 @@ class CityInteractor: CityInteractorProtocol {
             else {
                 cityLink = RequestsDataAPI.webURL
             }
-            CitysData.shared.citys[index].temp = cityTempr
+            CitysData.shared.citys[index].tempr = cityTempr
             CitysData.shared.citys[index].link = cityLink
             self.updateTempr(index: index + 1)
         }
@@ -65,7 +65,7 @@ class CityInteractor: CityInteractorProtocol {
             }
         }
         if (isExist == false) {
-            CitysData.shared.citys.insert(CityModel(city: citySearch, temp: "", link: ""), at: 0)
+            CitysData.shared.citys.insert(CityModel(city: citySearch, tempr: "", link: ""), at: 0)
         }
         self.updateTempr(index: 0)
     }

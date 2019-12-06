@@ -65,7 +65,7 @@ class CityPresenter: CityPresenterProtocol {
     }
     
     func getTemprCity(index: Int)->String {
-        return CitysData.shared.citys[index].temp
+        return CitysData.shared.citys[index].tempr
     }
     
     func deleteCity(index: Int) {

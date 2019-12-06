@@ -46,7 +46,7 @@ extension TimeForecastCell: UICollectionViewDelegate, UICollectionViewDataSource
             let hourDate = self.presenter?.getHour(index: indexPath.item)
             let hour = hourDate?.hour ?? ""
             let cloud = hourDate?.iconPhrase ?? ""
-            let tempr = hourDate?.temp ?? ""
+            let tempr = hourDate?.tempr ?? ""
             let icon = hourDate?.icon ?? ""
             cell.configCell(hour: hour, cloud: cloud, tempr: tempr, icon: icon)
         }

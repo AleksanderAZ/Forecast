@@ -24,8 +24,17 @@ class DayForecastCell: UITableViewCell {
     
     func configCell(day: String, cloud: String, tempr: String, icon: String) {
         self.day.text = day
-        self.cloud.text = " "
         self.tempr.text = tempr + " Cº"
-        (LoadImage(imageView: self.imageDay, icon: icon)).load()
+        ImageLoader.load(for: self.imageDay, icon: icon) { () in
+           DispatchQueue.main.async {
+            if let _ = self.imageDay.image {
+                self.cloud.isHidden = true
+            }
+            else {
+                self.cloud.text = cloud
+                self.imageDay.isHidden = true
+            }
+           }
+        }
     }
 }

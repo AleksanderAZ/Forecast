@@ -29,10 +29,6 @@ class WeatherPresenter: WeatherPresenterProtocol {
         router.showCityView(cityName: cityName)
     }
     
-    func showLinkView() {
-        router.showLinkView()
-    }
-    
     func openLinkSafary() {
         guard let link = self.interactor?.getMobilLink() else {return }
         self.router.openLinkSafary(link: link)
@@ -82,7 +78,7 @@ class WeatherPresenter: WeatherPresenterProtocol {
     
     func getDayTempr(index: Int)->String {
         guard let day = self.interactor?.getDay(index: index) else { return ""}
-        return day.temp
+        return day.tempr
     }
     
     func getDayIcon(index: Int)->String {
@@ -104,7 +100,7 @@ class WeatherPresenter: WeatherPresenterProtocol {
     
     func getCityTempr()->String {
         guard let currentCity = interactor?.getCurrentCity() else { return ""}
-        return currentCity.temp
+        return currentCity.tempr
     }
     
     func countHour()->Int {

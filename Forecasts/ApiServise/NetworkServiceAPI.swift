@@ -21,7 +21,6 @@ class NetworkServiceAPI: NSObject, NetworkServiceApiProtocol {
         var request = URLRequest(url: componentsUrl)
         request.httpMethod = method
         accountant = accountant + 1
-        print("----request accountant =", accountant, "----", request, "------")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
