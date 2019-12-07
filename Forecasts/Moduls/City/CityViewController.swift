@@ -27,7 +27,6 @@ class CityViewController: UIViewController, CityViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "🔍", style: .plain, target: self, action: #selector(clickRightButtonBar))
         self.navigationItem.title = "📌"
         cityTable.delegate = self

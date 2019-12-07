@@ -120,31 +120,37 @@ class WeatherInteractor: WeatherInteractorProtocol {
         return hourWeather.count
     }
     
-    func getFormatTime(strDate: String)->String {
+    private func getDateFromString(strDate: String)->Date? {
+        guard let indexPlas = strDate.index(of: "+") else { return nil }
+        let str = String(strDate.prefix(indexPlas.encodedOffset))
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        guard let formattedDate = dateFormatter.date(from: strDate) else {return strDate}
-        dateFormatter.dateFormat = "dd MM yyyy HH:mm"
-        let time: String = dateFormatter.string(from: formattedDate)
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        guard let formattedDate = dateFormatter.date(from: str) else {return nil}
+        return formattedDate
+    }
+    
+    func getStrFromData(date: Date, format: String)->String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = format
+        let time: String = dateFormatter.string(from: date)
         return time
     }
     
+    func getFormatTime(strDate: String)->String {
+        guard let date = getDateFromString(strDate: strDate) else { return ""}
+        return getStrFromData(date: date, format: "dd MM yyyy HH:mm")
+    }
+    
     func getFormatDate(strDate: String)->String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        guard let formattedDate = dateFormatter.date(from: strDate) else {return strDate}
-        dateFormatter.dateFormat = "dd MM yyyy"
-        let date: String = dateFormatter.string(from: formattedDate)
-        return date
+        guard let date = getDateFromString(strDate: strDate) else { return ""}
+        return getStrFromData(date: date, format: "dd MM yyyy")
     }
     
     func getFormatHour(strDate: String)->String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        guard let formattedDate = dateFormatter.date(from: strDate) else {return strDate}
-        dateFormatter.dateFormat = "HH:mm"
-        let hours: String = dateFormatter.string(from: formattedDate)
-        return hours
+        guard let date = getDateFromString(strDate: strDate) else { return ""}
+        return getStrFromData(date: date, format: "HH:mm")
     }
     
     func getImage(index: Int)->Data? {

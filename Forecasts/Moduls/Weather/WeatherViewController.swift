@@ -42,9 +42,6 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.title = ""
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
         weatherTable.delegate = self
         weatherTable.dataSource = self
         for item in cellIdentifier {
@@ -101,8 +98,9 @@ extension WeatherViewController:  UITableViewDataSource, UITableViewDelegate {
         let identifier = getIdentifier(section: indexPath.section)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let cell = cell as? AdditionInfoCell{
-            let text = self.presenter?.getAddInfo() ?? ""
-            cell.configCell(text: text)
+            let textFirst = self.presenter?.getAddInfoFirst() ?? ""
+            let textSecond = self.presenter?.getAddInfoSecond() ?? ""
+            cell.configCell(textFirst: textFirst, textSecond: textSecond)
         }
         else if let cell = cell as? DayForecastCell {
             let day = self.presenter?.getDay(index: indexPath.row) ?? ""

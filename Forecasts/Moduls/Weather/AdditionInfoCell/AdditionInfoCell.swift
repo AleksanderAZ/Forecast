@@ -10,7 +10,8 @@ import UIKit
 
 class AdditionInfoCell: UITableViewCell {
     
-    @IBOutlet weak var addInfoLabel: UILabel!
+    @IBOutlet weak var infoFirstLabel: UILabel!
+    @IBOutlet weak var infoSecondLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,7 +21,8 @@ class AdditionInfoCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configCell(text: String) {
-        addInfoLabel.text = text
+    func configCell(textFirst: String, textSecond: String) {
+        infoFirstLabel.text = textFirst
+        infoSecondLabel.text = textSecond
     }
 }

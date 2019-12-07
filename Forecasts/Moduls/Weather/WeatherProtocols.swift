@@ -30,7 +30,8 @@ protocol WeatherPresenterProtocol: class {
     func getDay(index: Int)->String
     func getDayCloud(index: Int)->String
     func getDayTempr(index: Int)->String
-    func getAddInfo()->String
+    func getAddInfoFirst()->String
+    func getAddInfoSecond()->String
     func getDayIcon(index: Int)->String
 }
 

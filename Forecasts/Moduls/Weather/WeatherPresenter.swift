@@ -64,11 +64,16 @@ class WeatherPresenter: WeatherPresenterProtocol {
         return day.day
     }
     
-    func getAddInfo()->String {
+    func getAddInfoFirst()->String {
         guard let day = self.interactor?.getDay(index: indexAddInfoSelect) else { return ""}
         let sunRise = day.sunRise
+        return "🌝 sunRise: " + sunRise
+    }
+    
+    func getAddInfoSecond()->String {
+        guard let day = self.interactor?.getDay(index: indexAddInfoSelect) else { return ""}
         let sunSet = day.sunSet
-        return "sunRise: " + sunRise + " - sunSet: " + sunSet
+        return "🌛 sunSet: " + sunSet
     }
     
     func getDayCloud(index: Int)->String {

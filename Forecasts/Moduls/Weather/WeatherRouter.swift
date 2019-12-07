@@ -31,6 +31,10 @@ class WeatherRouter: WeatherWireframeProtocol {
         if let viewCityController = CityRouter.createModule() as? CityViewController {
             if let viewWeatherController = self.viewController as? WeatherViewController {
                 viewCityController.delegate = viewWeatherController
+                if (cityName.isEmpty) {
+                    viewCityController.navigationItem.hidesBackButton = true
+                    viewCityController.navigationItem.setHidesBackButton(true, animated: false)
+                }
                 self.viewController?.navigationController?.pushViewController(viewCityController, animated: true)
             }
         }
