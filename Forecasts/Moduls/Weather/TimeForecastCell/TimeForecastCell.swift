@@ -45,17 +45,12 @@ extension TimeForecastCell: UICollectionViewDelegate, UICollectionViewDataSource
         if let cell = cell as? TimeForecastCollectionCell {
             let hourDate = self.presenter?.getHour(index: indexPath.item)
             let hour = hourDate?.hour ?? ""
-            let cloud = hourDate?.icon ?? ""
-            let tempr = hourDate?.temp ?? ""
-            cell.configCell(hour: hour, cloud: cloud, tempr: tempr)
+            let cloud = hourDate?.iconPhrase ?? ""
+            let tempr = hourDate?.tempr ?? ""
+            let icon = hourDate?.icon ?? ""
+            cell.configCell(hour: hour, cloud: cloud, tempr: tempr, icon: icon)
         }
         
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: 150, height: 120)
-        
-        return size
     }
 }

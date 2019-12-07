@@ -25,9 +25,7 @@ struct DailyForecast: Codable {
     let epochDate: Int?
     let sun: Sun?
     let moon: Moon?
-    let temperature, realFeelTemperature, realFeelTemperatureShade: RealFeelTemperature?
-    let hoursOfSun: Double?
-    let degreeDaySummary: DegreeDaySummary?
+    let temperature: RealFeelTemperature?
     let airAndPollen: [AirAndPollen]?
     let day, night: Day?
     let sources: [String]?
@@ -39,10 +37,6 @@ struct DailyForecast: Codable {
         case sun = "Sun"
         case moon = "Moon"
         case temperature = "Temperature"
-        case realFeelTemperature = "RealFeelTemperature"
-        case realFeelTemperatureShade = "RealFeelTemperatureShade"
-        case hoursOfSun = "HoursOfSun"
-        case degreeDaySummary = "DegreeDaySummary"
         case airAndPollen = "AirAndPollen"
         case day = "Day"
         case night = "Night"

@@ -12,6 +12,7 @@ class DayForecastCell: UITableViewCell {
     @IBOutlet weak var tempr: UILabel!
     @IBOutlet weak var cloud: UILabel!
     @IBOutlet weak var day: UILabel!
+    @IBOutlet weak var imageDay: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,9 +22,19 @@ class DayForecastCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configCell(day: String, cloud: String, tempr: String) {
+    func configCell(day: String, cloud: String, tempr: String, icon: String) {
         self.day.text = day
-        self.cloud.text = cloud
-        self.tempr.text = tempr + " tº"
+        self.tempr.text = tempr + " Cº"
+        ImageLoader.load(for: self.imageDay, icon: icon) { () in
+           DispatchQueue.main.async {
+            if let _ = self.imageDay.image {
+                self.cloud.isHidden = true
+            }
+            else {
+                self.cloud.text = cloud
+                self.imageDay.isHidden = true
+            }
+           }
+        }
     }
 }

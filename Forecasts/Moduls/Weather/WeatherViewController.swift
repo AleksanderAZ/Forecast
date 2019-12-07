@@ -15,17 +15,17 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var weatherTable: UITableView!
     @IBOutlet weak var cityLabel: UILabel!
+    var refreshControl: UIRefreshControl!
+    var presenter: WeatherPresenterProtocol?
+    let cellIdentifier = [ "CurrentTempCell", "TimeForecastCell", "DayForecastCell", "AdditionInfoCell"]
     
     @IBAction func listActionButton(_ sender: UIButton) {
         presenter?.showCityView()
     }
     
     @IBAction func linkActionButton(_ sender: UIButton) {
-        presenter?.openLinkSafary()  // presenter?.showLinkView()
+        presenter?.openLinkSafary()
     }
-
-    var presenter: WeatherPresenterProtocol?
-    let cellIdentifier = [ "CurrentTempCell", "TimeForecastCell", "DayForecastCell", "AdditionInfoCell"]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,14 +50,26 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
         weatherTable.separatorStyle = .none
         weatherTable.tableFooterView = UIView(frame: .zero)
         weatherTable.tableHeaderView = UIView(frame: .zero)
+        
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: " refresh...")
+        refreshControl.addTarget(self, action: #selector(actionRefresh), for: UIControl.Event.valueChanged)
+        weatherTable.addSubview(refreshControl)
+    }
+    
+    @objc func actionRefresh() {
+        presenter?.refreshForecasts()
+        refreshControl.endRefreshing()
     }
     
     func update() {
         DispatchQueue.main.async {
-            self.weatherTable.reloadData()
-            self.weatherTable.separatorStyle = .none
-            self.cityLabel.text = self.presenter?.getCityName()
             self.activityIndicator.stopAnimating()
+            self.weatherTable.reloadData()
+            let cityName = self.presenter?.getCityName() ?? ""
+            self.cityLabel.text = cityName
+            self.navigationItem.title = cityName
         }
     }
 }
@@ -86,14 +98,16 @@ extension WeatherViewController:  UITableViewDataSource, UITableViewDelegate {
         let identifier = getIdentifier(section: indexPath.section)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let cell = cell as? AdditionInfoCell{
-            let text = self.presenter?.getAddInfo() ?? ""
-            cell.configCell(text: text)
+            let textFirst = self.presenter?.getAddInfoFirst() ?? ""
+            let textSecond = self.presenter?.getAddInfoSecond() ?? ""
+            cell.configCell(textFirst: textFirst, textSecond: textSecond)
         }
         else if let cell = cell as? DayForecastCell {
             let day = self.presenter?.getDay(index: indexPath.row) ?? ""
             let cloud = self.presenter?.getDayCloud(index: indexPath.row) ?? ""
             let tempr = self.presenter?.getDayTempr(index: indexPath.row) ?? ""
-            cell.configCell(day: day, cloud: cloud, tempr: tempr)
+            let icon = self.presenter?.getDayIcon(index: indexPath.row) ?? ""
+            cell.configCell(day: day, cloud: cloud, tempr: tempr, icon: icon)
         }
         else if let cell = cell as? TimeForecastCell {
             cell.configCell(presenter: self.presenter)

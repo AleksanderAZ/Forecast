@@ -31,15 +31,13 @@ class WeatherRouter: WeatherWireframeProtocol {
         if let viewCityController = CityRouter.createModule() as? CityViewController {
             if let viewWeatherController = self.viewController as? WeatherViewController {
                 viewCityController.delegate = viewWeatherController
-                viewCityController.navigationItem.title = cityName
+                if (cityName.isEmpty) {
+                    viewCityController.navigationItem.hidesBackButton = true
+                    viewCityController.navigationItem.setHidesBackButton(true, animated: false)
+                }
                 self.viewController?.navigationController?.pushViewController(viewCityController, animated: true)
             }
         }
-    }
-    
-    func showLinkView() {
-        let view = WebViewRouter.createModule()
-        self.viewController?.navigationController?.pushViewController(view, animated: true)
     }
     
     func openLinkSafary(link: String) {

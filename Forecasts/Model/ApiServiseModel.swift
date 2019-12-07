@@ -9,14 +9,15 @@
 import Foundation
 
 struct RequestsDataAPI {
-    static let webURL = "https://developer.accuweather.com"
+    static let imadeURL = "https://developer.accuweather.com/sites/default/files/"
+    static let webURL = "https://www.accuweather.com"
     static let methodGet = "GET"
     static let baseURL = "https://dataservice.accuweather.com/"
     static let townPath = "locations/v1/cities/autocomplete"
     static let forecastHoursPath = "forecasts/v1/hourly/12hour/"
     static let forecastDayPath = "forecasts/v1/daily/5day/"
     static let currentWeatherPath = "currentconditions/v1/"
-    static let parametersApiKey: [String: String] = ["apikey": "l4NPnQNtBzmSopFZW58WUIEiFsJ8y8YS", "details": "true"]
+    static let parametersApiKey: [String: String] = ["apikey": "sqHA6GXR3N3QAQ6kGGbMEpogluATHOgV", "details": "true", "metric": "true"]
     static let searchKey = "q"
 }
 

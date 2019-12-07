@@ -16,26 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var navController: UINavigationController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
         self.window = UIWindow(frame:UIScreen.main.bounds)
         
         let weatherView = WeatherRouter.createModule()
-        let linkView = WebViewRouter.createModule()
-        let listView = CityRouter.createModule()
-        //let tabBarController =  UITabBarController()
         let navigationController = UINavigationController(rootViewController: weatherView)
-        
-        linkView.title = "link"
-        listView.title = "list"
-        
-        //navigationController.pushViewController(listView, animated: true)
-        navigationController.title = "Weather forecast"
         navigationController.navigationBar.isTranslucent = false
-        
-        //tabBarController.viewControllers = [navigationController, linkView, listView]
-        //tabBarController.viewControllers = [weatherView, linkView, listView]
-        //tabBarController.tabBar.isTranslucent = false
         
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()

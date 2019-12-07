@@ -17,14 +17,16 @@ struct Weather {
 struct HourWeather {
     let hour: String
     let icon: String
-    let temp: String
+    let tempr: String
+    let iconPhrase: String
 }
 
 struct DayWeather {
     let day: String
     let icon: String
-    let temp: String
+    let tempr: String
     let sunRise: String
     let sunSet: String
+    let iconPhrase: String
 }
 

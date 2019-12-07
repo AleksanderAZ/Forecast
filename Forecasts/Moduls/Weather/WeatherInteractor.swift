@@ -43,6 +43,10 @@ class WeatherInteractor: WeatherInteractorProtocol {
         return self.currentCity
     }
     
+    func getMobilLink()->String? {
+        return self.currentCity?.link
+    }
+    
     private func update() {
         guard let presenter = self.presenter else { return }
         guard let _ = self.currentCity else { return }
@@ -79,14 +83,18 @@ class WeatherInteractor: WeatherInteractorProtocol {
         var  dayWeather = [DayWeather]()
         guard let dailyForecasts = result?.dailyForecasts else { return}
         for item in dailyForecasts {
-            guard let day = item.date else {return}
-            guard let icon = item.day?.cloudCover else {return}
+            guard let dayIso = item.date else {return}
+            guard let iconPhrase = item.day?.iconPhrase else {return}
+            guard let icon = item.day?.icon else {return}
             guard let tempMax = item.temperature?.maximum?.value else {return}
             guard let tempMin = item.temperature?.minimum?.value else {return}
-            let temp = "\((tempMin+tempMax)/2)"
+            let temp = String(format: "%.1f",(tempMin+tempMax)/2)
             guard let sunRise = item.sun?.rise else {return}
             guard let sunSet = item.sun?.sunSet else {return}
-            let oneDay = DayWeather(day: day, icon: "\(icon)", temp: temp, sunRise: sunRise, sunSet: sunSet)
+            let sunRiseTime = getFormatTime(strDate: sunRise)
+            let sunsetTime = getFormatTime(strDate: sunSet)
+            let day = getFormatDate(strDate: dayIso)
+            let oneDay = DayWeather(day: day, icon: "\(icon)", tempr: temp, sunRise: sunRiseTime, sunSet: sunsetTime, iconPhrase: iconPhrase)
             dayWeather.append(oneDay)
         }
         self.dayWeather = dayWeather
@@ -96,10 +104,13 @@ class WeatherInteractor: WeatherInteractorProtocol {
         var  hourWeather = [HourWeather]()
         guard let forecastHour = result else { return}
         for item in forecastHour {
-            guard let hour = item.dateTime else {return}
-            guard let icon = item.iconPhrase else { return}
-            guard let temp = item.temperature?.value else {return}
-            let oneHour =  HourWeather(hour: hour, icon: icon, temp: "\(temp)")
+            guard let hourIso = item.dateTime else {return}
+            guard let icon = item.icon else { return}
+            guard let iconPhrase = item.iconPhrase else { return}
+            guard let temprIso = item.temperature?.value else {return}
+            let hour = getFormatHour(strDate: hourIso)
+            let tempr = String(format: "%.1f",temprIso)
+            let oneHour =  HourWeather(hour: hour, icon: "\(icon)", tempr: tempr, iconPhrase: iconPhrase)
             hourWeather.append(oneHour)
         }
         self.hourWeather = hourWeather
@@ -107,5 +118,50 @@ class WeatherInteractor: WeatherInteractorProtocol {
     
     func getHourCount()->Int {
         return hourWeather.count
+    }
+    
+    private func getDateFromString(strDate: String)->Date? {
+        guard let indexPlas = strDate.index(of: "+") else { return nil }
+        let str = String(strDate.prefix(indexPlas.encodedOffset))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        guard let formattedDate = dateFormatter.date(from: str) else {return nil}
+        return formattedDate
+    }
+    
+    func getStrFromData(date: Date, format: String)->String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = format
+        let time: String = dateFormatter.string(from: date)
+        return time
+    }
+    
+    func getFormatTime(strDate: String)->String {
+        guard let date = getDateFromString(strDate: strDate) else { return ""}
+        return getStrFromData(date: date, format: "dd MM yyyy HH:mm")
+    }
+    
+    func getFormatDate(strDate: String)->String {
+        guard let date = getDateFromString(strDate: strDate) else { return ""}
+        return getStrFromData(date: date, format: "dd MM yyyy")
+    }
+    
+    func getFormatHour(strDate: String)->String {
+        guard let date = getDateFromString(strDate: strDate) else { return ""}
+        return getStrFromData(date: date, format: "HH:mm")
+    }
+    
+    func getImage(index: Int)->Data? {
+        let url = RequestsDataAPI.imadeURL + String(format: "%02d-s.png", index)
+        print(url)
+        guard let imgURL = URL(string: url) else {return nil}
+        guard let imgData = NSData(contentsOf: imgURL) else { return nil}
+    
+        return imgData as Data
+        //guard let image = UIImage(data: imgData as Data) else { return }
+        
+        //img.image = image
     }
 }
