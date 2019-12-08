@@ -11,7 +11,7 @@ import Foundation
 class CitysData {
     var  citys = [CityModel]()
     var  citysSearch = [CitySearchModel]()
-    let quantityMax = 5
+    let quantityMax = 2
     
     static let shared = CitysData()
     
@@ -27,6 +27,20 @@ class CitysData {
         
         for i in 0..<quantity {
             UserDefaults.standard.set(save[i].city.cityName, forKey: "forecastcity" + String(i))
+            UserDefaults.standard.set(save[i].city.cityKey, forKey:  "forecastkey" + String(i))
+            UserDefaults.standard.set(save[i].city.countryName, forKey:  "forecastcountry" + String(i))
+        }
+    }
+    
+    func deleteUserDef(index: Int) {
+        var quantity = self.quantityMax
+        
+        if save.count < quantity {
+            quantity = save.count
+        }
+        
+        for i in 0..<quantity {
+            UserDefaults.standard.removeObject(forKey: <#T##String#>) set(save[i].city.cityName, forKey: "forecastcity" + String(i))
             UserDefaults.standard.set(save[i].city.cityKey, forKey:  "forecastkey" + String(i))
             UserDefaults.standard.set(save[i].city.countryName, forKey:  "forecastcountry" + String(i))
         }

@@ -17,7 +17,7 @@ struct RequestsDataAPI {
     static let forecastHoursPath = "forecasts/v1/hourly/12hour/"
     static let forecastDayPath = "forecasts/v1/daily/5day/"
     static let currentWeatherPath = "currentconditions/v1/"
-    static let parametersApiKey: [String: String] = ["apikey": "sqHA6GXR3N3QAQ6kGGbMEpogluATHOgV", "details": "true", "metric": "true"]
+    static let parametersApiKey: [String: String] = ["apikey": "EQ96RKAG6EqsloEfFo9rTgjgTqyLFzkK", "details": "true", "metric": "true"]
     static let searchKey = "q"
 }
 
