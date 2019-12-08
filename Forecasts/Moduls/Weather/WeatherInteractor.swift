@@ -94,8 +94,6 @@ class WeatherInteractor: WeatherInteractorProtocol {
             let sunRiseTime = getFormatTime(strDate: sunRise)
             let sunSetTime = getFormatTime(strDate: sunSet)
             let day = getFormatDate(strDate: dayIso)
-            print(dayIso,iconPhrase,sunRise,sunSet)
-            print(dayIso,iconPhrase,sunRise,sunSet)
             let oneDay = DayWeather(day: day, icon: "\(icon)", tempr: tempr, sunRise: sunRiseTime, sunSet: sunSetTime, iconPhrase: iconPhrase)
             dayWeather.append(oneDay)
         }
@@ -123,13 +121,11 @@ class WeatherInteractor: WeatherInteractorProtocol {
     }
     
     private func getDateFromString(strDate: String)->Date? {
-        guard let indexPlas = strDate.index(of: "+") else { return nil }
-        let str = String(strDate.prefix(indexPlas.encodedOffset))
+        let str = String(strDate.prefix(19))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         guard let formatedDate = dateFormatter.date(from: str) else {return nil}
-        print(strDate,formatedDate)
         return formatedDate
     }
     
@@ -158,13 +154,8 @@ class WeatherInteractor: WeatherInteractorProtocol {
     
     func getImage(index: Int)->Data? {
         let url = RequestsDataAPI.imadeURL + String(format: "%02d-s.png", index)
-        print(url)
         guard let imgURL = URL(string: url) else {return nil}
         guard let imgData = NSData(contentsOf: imgURL) else { return nil}
-    
         return imgData as Data
-        //guard let image = UIImage(data: imgData as Data) else { return }
-        
-        //img.image = image
     }
 }

@@ -46,9 +46,7 @@ class CityInteractor: CityInteractorProtocol {
             self.updateTempr(index: index + 1)
         }
         else {
-            guard let presenter = self.presenter else { return }
-            print(CitysData.shared.citys)
-            presenter.update()
+            presenter?.update()
         }
     }
     
@@ -62,12 +60,14 @@ class CityInteractor: CityInteractorProtocol {
         for city in CitysData.shared.citys {
             if (city.city.cityKey == citySearch.cityKey) {
                 isExist = true
+                break
             }
         }
         if (isExist == false) {
-            CitysData.shared.citys.insert(CityModel(city: citySearch, tempr: "", link: ""), at: 0)
+            CitysData.shared.citys.append(CityModel(city: citySearch, tempr: "", link: ""))
+            self.request(index: CitysData.shared.citys.count - 1)
+            presenter?.update()
         }
-        self.request(index: 0)
     }
     
     func deleteCity(index: Int) {
