@@ -8,48 +8,65 @@
 
 import Foundation
 
-class CitysData {
-    var  citys = [CityModel]()
-    var  citysSearch = [CitySearchModel]()
-    let quantityMax = 5
-    
-    static let shared = CitysData()
-    
-    private init() {
+struct Key: RawRepresentable {
+    let rawValue: String
+}
+
+extension Key: ExpressibleByStringLiteral {
+    init(stringLiteral: String) {
+        rawValue = stringLiteral
+    }
+}
+
+extension Key {
+    static let citysFavorite: Key = "citysFavorite"
+}
+
+protocol PropertyListValue {}
+extension String: PropertyListValue {}
+extension Data: PropertyListValue {}
+extension Dictionary: PropertyListValue where Key == String, Value: PropertyListValue {}
+extension Array: PropertyListValue where Element: PropertyListValue {}
+
+//@propertyWrapper
+struct CitysUserDefault<T: PropertyListValue> {
+    let key: Key
+
+    init(key: Key){
+        self.key = key
     }
     
+    var wrappedValue: T? {
+        get { return UserDefaults.standard.value(forKey: key.rawValue) as? T }
+        set { UserDefaults.standard.set(newValue, forKey: key.rawValue) }
+    }
+}
+
+struct CityStorage {
+    var citysUserDefault = CitysUserDefault<[String: String]>(key: Key.citysFavorite)
+}
+
+class CitysData {
+    
     func saveUserDef(save: [CityModel]) {
-        var quantity = self.quantityMax
+        var citysStorage = CityStorage()
+        var saveDictionery = [String: String]()
         
-        if save.count < quantity {
-            quantity = save.count
+        for item in save {
+            let key = item.city.cityKey
+            let name = item.city.cityName
+            saveDictionery[key] = name
         }
-        
-        for i in 0..<quantity {
-            UserDefaults.standard.set(save[i].city.cityName, forKey: "forecastcity" + String(i))
-            UserDefaults.standard.set(save[i].city.cityKey, forKey:  "forecastkey" + String(i))
-            UserDefaults.standard.set(save[i].city.countryName, forKey:  "forecastcountry" + String(i))
-        }
-        if quantity < self.quantityMax {
-            let start = quantity + 1
-            let end = self.quantityMax
-            for i in start..<end {
-                UserDefaults.standard.removeObject(forKey: "forecastcity" + String(i))
-                UserDefaults.standard.removeObject(forKey:  "forecastkey" + String(i))
-                UserDefaults.standard.removeObject(forKey:  "forecastcountry" + String(i))
-            }
-        }
+        citysStorage.citysUserDefault.wrappedValue = saveDictionery
     }
     
     func getUserDef()->[CitySearchModel] {
-        let quantity = self.quantityMax
+        var citysStorage = CityStorage()
         var cityDef = [CitySearchModel]()
         
-        for i in 0..<quantity {
-            guard let cityName = UserDefaults.standard.string(forKey: "forecastcity" + String(i)) else { return cityDef}
-            guard let cityKey = UserDefaults.standard.string(forKey: "forecastkey" + String(i)) else { return cityDef}
-            guard let countryName = UserDefaults.standard.string(forKey: "forecastcountry" + String(i)) else { return cityDef}
-            cityDef.append(CitySearchModel(cityName: cityName, countryName: countryName, cityKey: cityKey))
+        guard let saveDictionery = citysStorage.citysUserDefault.wrappedValue else { return cityDef }
+        for item in saveDictionery {
+            cityDef.append(CitySearchModel(cityName: item.value, countryName: "", cityKey: item.key))
         }
         return cityDef
     }

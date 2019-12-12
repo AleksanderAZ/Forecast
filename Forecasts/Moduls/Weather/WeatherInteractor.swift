@@ -129,7 +129,7 @@ class WeatherInteractor: WeatherInteractorProtocol {
         return formatedDate
     }
     
-    func getStrFromData(date: Date, format: String)->String {
+    private func getStrFromData(date: Date, format: String)->String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.dateFormat = format

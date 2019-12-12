@@ -24,15 +24,7 @@ class CityPresenter: CityPresenterProtocol {
 
     func checkStart() {
         guard countIsEmpty() else {  self.update(); return }
-        let cityDef = CitysData.shared.getUserDef()
-        if cityDef.count > 0 {
-            for item in cityDef {
-                self.addCity(citySearch: item)
-            }
-        }
-        else {
-            showSearchCityView()
-        }
+        interactor?.loadCitys()
     }
     
     func countIsEmpty()->Bool {
@@ -40,7 +32,7 @@ class CityPresenter: CityPresenterProtocol {
     }
     
     func countCell()->Int {
-        return CitysData.shared.citys.count
+        return interactor?.countCity() ?? 0
     }
     
     func showSearchCityView() {
@@ -48,8 +40,8 @@ class CityPresenter: CityPresenterProtocol {
     }
     
     func closeView(index: Int) {
-        CitysData.shared.saveUserDef(save: CitysData.shared.citys)
-        router.closeView(city: CitysData.shared.citys[index])
+        interactor?.saveCitys()
+        router.closeView(city: interactor?.getCity(index: index))
     }
     
     func addCity(citySearch: CitySearchModel?) {
@@ -61,11 +53,13 @@ class CityPresenter: CityPresenterProtocol {
     }
     
     func getNameCity(index: Int)->String {
-        return CitysData.shared.citys[index].city.cityName
+        let city = interactor?.getCity(index: index)
+        return city?.city.cityName ?? ""
     }
     
     func getTemprCity(index: Int)->String {
-        return CitysData.shared.citys[index].tempr
+        let city = interactor?.getCity(index: index)
+        return city?.tempr ?? ""
     }
     
     func deleteCity(index: Int) {
