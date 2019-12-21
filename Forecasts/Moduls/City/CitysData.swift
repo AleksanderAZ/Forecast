@@ -31,14 +31,14 @@ extension Array: PropertyListValue where Element: PropertyListValue {}
 //@propertyWrapper
 struct CitysUserDefault<T: PropertyListValue> {
     let key: Key
-
+    private let userDef = UserDefaults.standard
     init(key: Key){
         self.key = key
     }
     
     var wrappedValue: T? {
-        get { return UserDefaults.standard.value(forKey: key.rawValue) as? T }
-        set { UserDefaults.standard.set(newValue, forKey: key.rawValue) }
+        get { return userDef.value(forKey: key.rawValue) as? T }
+        set { userDef.set(newValue, forKey: key.rawValue) }
     }
 }
 
