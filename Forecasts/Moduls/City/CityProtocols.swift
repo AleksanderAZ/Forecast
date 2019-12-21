@@ -26,8 +26,8 @@ protocol CityPresenterProtocol: class {
     func deleteCity(index: Int)
     func update()
     func checkStart()
-    func closeViewFirst(index: Int)
     func refreshTempr()
+ //   func saveCitys()
 }
 
 //MARK: Interactor -

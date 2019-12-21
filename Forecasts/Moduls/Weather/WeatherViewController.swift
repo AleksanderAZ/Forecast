@@ -50,7 +50,7 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
         weatherTable.separatorStyle = .none
         weatherTable.tableFooterView = UIView(frame: .zero)
         weatherTable.tableHeaderView = UIView(frame: .zero)
-        
+        //weatherTable.sell
         
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: " refresh...")
@@ -120,6 +120,8 @@ extension WeatherViewController:  UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        presenter?.selectAddInfo(index: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

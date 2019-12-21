@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sky" highlightedImage="sky" translatesAutoresizingMaskIntoConstraints="NO" id="n7T-tj-qTT">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sky" highlightedImage="sky" translatesAutoresizingMaskIntoConstraints="NO" id="n7T-tj-qTT">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nyj-Ok-slb">
@@ -52,6 +52,6 @@
         </view>
     </objects>
     <resources>
-        <image name="sky" width="800" height="1422"/>
+        <image name="sky" width="696" height="1043"/>
     </resources>
 </document>

@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sky" highlightedImage="sky" translatesAutoresizingMaskIntoConstraints="NO" id="x9B-X0-xRQ">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sky" highlightedImage="sky" translatesAutoresizingMaskIntoConstraints="NO" id="x9B-X0-xRQ">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <searchBar contentMode="redraw" placeholder="Select City more 2 character" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ax2-X0-aKz">
@@ -65,6 +65,6 @@
         </view>
     </objects>
     <resources>
-        <image name="sky" width="800" height="1422"/>
+        <image name="sky" width="696" height="1043"/>
     </resources>
 </document>

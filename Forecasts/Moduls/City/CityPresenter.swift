@@ -40,12 +40,8 @@ class CityPresenter: CityPresenterProtocol {
     }
     
     func closeView(index: Int) {
-        interactor?.saveCitys()
-        router.closeView(city: interactor?.getCity(index: index))
-    }
-    
-    func closeViewFirst(index: Int) {
-        router.closeView(city: interactor?.getCity(index: index))
+        guard let city = interactor?.getCity(index: index) else { return }
+        router.closeView(city: city)
     }
     
     func addCity(citySearch: CitySearchModel?) {
@@ -73,5 +69,6 @@ class CityPresenter: CityPresenterProtocol {
     
     func update() {
          self.view?.update()
+         interactor?.saveCitys()
     }
 }

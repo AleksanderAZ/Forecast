@@ -28,7 +28,7 @@ class CityViewController: UIViewController, CityViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "🔍", style: .plain, target: self, action: #selector(clickRightButtonBar))
-        self.navigationItem.title = "📌"
+        self.navigationItem.title = "⭐️"
         cityTable.delegate = self
         cityTable.dataSource = self
         cityTable.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
@@ -54,10 +54,10 @@ class CityViewController: UIViewController, CityViewProtocol {
     func update() {
         DispatchQueue.main.async {
            if (self.navigationItem.hidesBackButton) {
-               //self.presenter?.closeViewFirst(index: 0)
+               self.presenter?.closeView(index: 0)
            }
-           self.cityTable.reloadData()
            self.indicator.stopAnimating()
+           self.cityTable.reloadData()
         }
     }
 }

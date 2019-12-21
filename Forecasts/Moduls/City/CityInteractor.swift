@@ -25,6 +25,7 @@ class CityInteractor: CityInteractorProtocol {
             guard let result = result else { print(error as Any); return }
             var cityTempr: String
             var cityLink: String
+            var cityIcon: String
             if let tempr = result.first?.temperature?.metric?.value {
                  cityTempr = "\(tempr)"
             }
@@ -37,8 +38,18 @@ class CityInteractor: CityInteractorProtocol {
             else {
                 cityLink = RequestsDataAPI.webURL
             }
+            if let icon = result.first?.weatherIcon {
+                cityIcon = "\(icon)"
+            }
+            else {
+                cityIcon = ""
+            }
             self.citys[index].tempr = cityTempr
             self.citys[index].link = cityLink
+            self.citys[index].icon = cityIcon
+            if index == self.citys.count - 1 {
+                self.presenter?.update()
+            }
         }
     }
     private func updateTempr(index: Int) {
@@ -47,9 +58,6 @@ class CityInteractor: CityInteractorProtocol {
         if (index < quantity) {
             self.request(index: index)
             self.updateTempr(index: index + 1)
-        }
-        else {
-            presenter?.update()
         }
     }
     
@@ -67,9 +75,8 @@ class CityInteractor: CityInteractorProtocol {
             }
         }
         if (isExist == false) {
-            self.citys.append(CityModel(city: citySearch, tempr: "", link: ""))
+            self.citys.append(CityModel(city: citySearch, tempr: "", link: "", icon: ""))
             self.request(index: self.citys.count - 1)
-            presenter?.update()
         }
     }
     
