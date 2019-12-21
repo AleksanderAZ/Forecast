@@ -35,7 +35,7 @@ class CityViewController: UIViewController, CityViewProtocol {
         cityTable.rowHeight = UITableView.automaticDimension
         cityTable.tableFooterView = UIView(frame: .zero)
         cityTable.separatorStyle = .none
-    
+
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "refresh...")
         refreshControl.addTarget(self, action: #selector(actionRefresh), for: UIControl.Event.valueChanged)
@@ -53,6 +53,9 @@ class CityViewController: UIViewController, CityViewProtocol {
     
     func update() {
         DispatchQueue.main.async {
+           if (self.navigationItem.hidesBackButton) {
+               //self.presenter?.closeViewFirst(index: 0)
+           }
            self.cityTable.reloadData()
            self.indicator.stopAnimating()
         }

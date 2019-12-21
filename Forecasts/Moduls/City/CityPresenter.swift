@@ -11,7 +11,7 @@
 import UIKit
 
 class CityPresenter: CityPresenterProtocol {
-   
+
     weak private var view: CityViewProtocol?
     var interactor: CityInteractorProtocol?
     private let router: CityWireframeProtocol
@@ -41,6 +41,10 @@ class CityPresenter: CityPresenterProtocol {
     
     func closeView(index: Int) {
         interactor?.saveCitys()
+        router.closeView(city: interactor?.getCity(index: index))
+    }
+    
+    func closeViewFirst(index: Int) {
         router.closeView(city: interactor?.getCity(index: index))
     }
     

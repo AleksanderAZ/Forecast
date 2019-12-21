@@ -37,7 +37,7 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        super.viewWillAppear(animated)
+        super.viewWillDisappear(animated)
     }
     
 	override func viewDidLoad() {
