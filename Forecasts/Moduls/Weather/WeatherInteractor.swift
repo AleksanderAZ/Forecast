@@ -88,13 +88,13 @@ class WeatherInteractor: WeatherInteractorProtocol {
             guard let icon = item.day?.icon else {return}
             guard let tempMax = item.temperature?.maximum?.value else {return}
             guard let tempMin = item.temperature?.minimum?.value else {return}
-            let temp = String(format: "%.1f",(tempMin+tempMax)/2)
+            let tempr = String(format: "%.1f",(tempMin+tempMax)/2)
             guard let sunRise = item.sun?.rise else {return}
             guard let sunSet = item.sun?.sunSet else {return}
             let sunRiseTime = getFormatTime(strDate: sunRise)
-            let sunsetTime = getFormatTime(strDate: sunSet)
+            let sunSetTime = getFormatTime(strDate: sunSet)
             let day = getFormatDate(strDate: dayIso)
-            let oneDay = DayWeather(day: day, icon: "\(icon)", tempr: temp, sunRise: sunRiseTime, sunSet: sunsetTime, iconPhrase: iconPhrase)
+            let oneDay = DayWeather(day: day, icon: "\(icon)", tempr: tempr, sunRise: sunRiseTime, sunSet: sunSetTime, iconPhrase: iconPhrase)
             dayWeather.append(oneDay)
         }
         self.dayWeather = dayWeather
@@ -121,20 +121,19 @@ class WeatherInteractor: WeatherInteractorProtocol {
     }
     
     private func getDateFromString(strDate: String)->Date? {
-        guard let indexPlas = strDate.index(of: "+") else { return nil }
-        let str = String(strDate.prefix(indexPlas.encodedOffset))
+        let str = String(strDate.prefix(19))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        guard let formattedDate = dateFormatter.date(from: str) else {return nil}
-        return formattedDate
+        guard let formatedDate = dateFormatter.date(from: str) else {return nil}
+        return formatedDate
     }
     
-    func getStrFromData(date: Date, format: String)->String {
+    private func getStrFromData(date: Date, format: String)->String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.dateFormat = format
-        let time: String = dateFormatter.string(from: date)
+        let time = dateFormatter.string(from: date)
         return time
     }
     
@@ -155,13 +154,8 @@ class WeatherInteractor: WeatherInteractorProtocol {
     
     func getImage(index: Int)->Data? {
         let url = RequestsDataAPI.imadeURL + String(format: "%02d-s.png", index)
-        print(url)
         guard let imgURL = URL(string: url) else {return nil}
         guard let imgData = NSData(contentsOf: imgURL) else { return nil}
-    
         return imgData as Data
-        //guard let image = UIImage(data: imgData as Data) else { return }
-        
-        //img.image = image
     }
 }

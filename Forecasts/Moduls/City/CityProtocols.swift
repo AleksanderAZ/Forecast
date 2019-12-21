@@ -26,6 +26,7 @@ protocol CityPresenterProtocol: class {
     func deleteCity(index: Int)
     func update()
     func checkStart()
+    func closeViewFirst(index: Int)
     func refreshTempr()
 }
 
@@ -35,6 +36,10 @@ protocol CityInteractorProtocol: class {
     func addCity(citySearch: CitySearchModel?)
     func deleteCity(index: Int)
     func refreshTempr()
+    func loadCitys()
+    func saveCitys()
+    func countCity()->Int
+    func getCity(index: Int)->CityModel?
 }
 
 //MARK: View -
