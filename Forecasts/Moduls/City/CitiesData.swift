@@ -19,7 +19,7 @@ extension Key: ExpressibleByStringLiteral {
 }
 
 extension Key {
-    static let citysFavorite: Key = "citysFavorite"
+    static let citiesFavorite: Key = "citysFavorite"
 }
 
 protocol PropertyListValue {}
@@ -29,7 +29,7 @@ extension Dictionary: PropertyListValue where Key == String, Value: PropertyList
 extension Array: PropertyListValue where Element: PropertyListValue {}
 
 //@propertyWrapper
-struct CitysUserDefault<T: PropertyListValue> {
+struct CitiesUserDefault<T: PropertyListValue> {
     let key: Key
     private let userDef = UserDefaults.standard
     init(key: Key){
@@ -43,10 +43,10 @@ struct CitysUserDefault<T: PropertyListValue> {
 }
 
 struct CityStorage {
-    var citysUserDefault = CitysUserDefault<[String: String]>(key: Key.citysFavorite)
+    var cityiesUserDefault = CitiesUserDefault<[String: String]>(key: Key.citiesFavorite)
 }
 
-class CitysData {
+class CitiesData {
     
     func saveUserDef(save: [CityModel]) {
         var citysStorage = CityStorage()
@@ -57,14 +57,14 @@ class CitysData {
             let name = item.city.cityName
             saveDictionery[key] = name
         }
-        citysStorage.citysUserDefault.wrappedValue = saveDictionery
+        citysStorage.cityiesUserDefault.wrappedValue = saveDictionery
     }
     
     func getUserDef()->[CitySearchModel] {
         var citysStorage = CityStorage()
         var cityDef = [CitySearchModel]()
         
-        guard let saveDictionery = citysStorage.citysUserDefault.wrappedValue else { return cityDef }
+        guard let saveDictionery = citysStorage.cityiesUserDefault.wrappedValue else { return cityDef }
         for item in saveDictionery {
             cityDef.append(CitySearchModel(cityName: item.value, countryName: "", cityKey: item.key))
         }

@@ -24,7 +24,7 @@ class CityPresenter: CityPresenterProtocol {
 
     func checkStart() {
         guard countIsEmpty() else {  self.update(); return }
-        interactor?.loadCitys()
+        interactor?.loadCities()
     }
     
     func countIsEmpty()->Bool {
@@ -69,6 +69,6 @@ class CityPresenter: CityPresenterProtocol {
     
     func update() {
          self.view?.update()
-         interactor?.saveCitys()
+         interactor?.saveCities()
     }
 }

@@ -27,7 +27,6 @@ protocol CityPresenterProtocol: class {
     func update()
     func checkStart()
     func refreshTempr()
- //   func saveCitys()
 }
 
 //MARK: Interactor -
@@ -36,8 +35,8 @@ protocol CityInteractorProtocol: class {
     func addCity(citySearch: CitySearchModel?)
     func deleteCity(index: Int)
     func refreshTempr()
-    func loadCitys()
-    func saveCitys()
+    func loadCities()
+    func saveCities()
     func countCity()->Int
     func getCity(index: Int)->CityModel?
 }

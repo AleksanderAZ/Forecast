@@ -13,12 +13,12 @@ import UIKit
 class CityInteractor: CityInteractorProtocol {
 
     weak var presenter: CityPresenterProtocol?
-    var citysData = CitysData()
-    var citys = [CityModel]()
+    var cityiesData = CitiesData()
+    var cities = [CityModel]()
     
     private func request(index: Int) {
-        guard index < citys.count else { return }
-        let citySearch = citys[index].city
+        guard index < cities.count else { return }
+        let citySearch = cities[index].city
         let pathURL = RequestsDataAPI.currentWeatherPath + citySearch.cityKey
         NetworkServiceAPI.shared.loadAPIRequest(pathURL: pathURL) { [weak self] (result: [CurrentlyAPIJSONModel]?, error) in
             guard let self = self else { return }
@@ -44,16 +44,16 @@ class CityInteractor: CityInteractorProtocol {
             else {
                 cityIcon = ""
             }
-            self.citys[index].tempr = cityTempr
-            self.citys[index].link = cityLink
-            self.citys[index].icon = cityIcon
-            if index == self.citys.count - 1 {
+            self.cities[index].tempr = cityTempr
+            self.cities[index].link = cityLink
+            self.cities[index].icon = cityIcon
+            if index == self.cities.count - 1 {
                 self.presenter?.update()
             }
         }
     }
     private func updateTempr(index: Int) {
-        let quantity = citys.count
+        let quantity = cities.count
 
         if (index < quantity) {
             self.request(index: index)
@@ -68,24 +68,24 @@ class CityInteractor: CityInteractorProtocol {
     func addCity(citySearch: CitySearchModel?) {
         guard let citySearch = citySearch else { return }
         var isExist = false
-        for city in self.citys {
+        for city in self.cities {
             if (city.city.cityKey == citySearch.cityKey) {
                 isExist = true
                 break
             }
         }
         if (isExist == false) {
-            self.citys.append(CityModel(city: citySearch, tempr: "", link: "", icon: ""))
-            self.request(index: self.citys.count - 1)
+            self.cities.append(CityModel(city: citySearch))
+            self.request(index: self.cities.count - 1)
         }
     }
     
     func deleteCity(index: Int) {
-        self.citys.remove(at: index)
+        self.cities.remove(at: index)
     }
     
-    func loadCitys() {
-        let cityDef = citysData.getUserDef()
+    func loadCities() {
+        let cityDef = cityiesData.getUserDef()
         if cityDef.count > 0 {
             for item in cityDef {
                 self.addCity(citySearch: item)
@@ -96,16 +96,16 @@ class CityInteractor: CityInteractorProtocol {
         }
     }
     
-    func saveCitys() {
-        citysData.saveUserDef(save: citys)
+    func saveCities() {
+        cityiesData.saveUserDef(save: cities)
     }
     
     func countCity()->Int {
-        return citys.count
+        return cities.count
     }
     
     func getCity(index: Int)->CityModel? {
-        guard  index < citys.count else { return nil }
-        return citys[index]
+        guard  index < cities.count else { return nil }
+        return cities[index]
     }
 }
