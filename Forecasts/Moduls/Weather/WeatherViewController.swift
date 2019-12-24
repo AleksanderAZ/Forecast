@@ -50,7 +50,6 @@ class WeatherViewController: UIViewController, WeatherViewProtocol {
         weatherTable.separatorStyle = .none
         weatherTable.tableFooterView = UIView(frame: .zero)
         weatherTable.tableHeaderView = UIView(frame: .zero)
-        //weatherTable.sell
         
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: " refresh...")
