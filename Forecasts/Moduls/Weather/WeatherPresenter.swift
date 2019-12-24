@@ -111,4 +111,9 @@ class WeatherPresenter: WeatherPresenterProtocol {
     func countHour()->Int {
         return self.interactor?.getHourCount() ?? 0
     }
+    
+    func selectAddInfo(index: Int) {
+        indexAddInfoSelect = index
+        update()
+    }
 }

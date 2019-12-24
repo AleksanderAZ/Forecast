@@ -37,8 +37,9 @@ class CityRouter: CityWireframeProtocol {
     }
     
     func closeView(city: CityModel?) {
+        guard let cityNew = city else { return }
         if let viewController = self.viewController as? CityViewController {
-            viewController.delegate?.getForecasts(city: city)
+            viewController.delegate?.getForecasts(city: cityNew)
         }
         self.viewController?.navigationController?.popViewController(animated: true)
     }

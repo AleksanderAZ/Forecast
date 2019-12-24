@@ -102,6 +102,11 @@ class WeatherInteractor: WeatherInteractorProtocol {
     
     private func setHourWeather(result: [ForecastHourAPIJSONModel]?) {
         var  hourWeather = [HourWeather]()
+        guard let icon = currentCity?.icon else { return}
+        guard let iconPhrase = currentCity?.tempr else { return}
+        guard let temprIso = currentCity?.tempr else {return}
+        let oneHour =  HourWeather(hour: "Now", icon: "\(icon)", tempr: temprIso, iconPhrase: iconPhrase)
+        hourWeather.append(oneHour)
         guard let forecastHour = result else { return}
         for item in forecastHour {
             guard let hourIso = item.dateTime else {return}

@@ -33,6 +33,7 @@ protocol WeatherPresenterProtocol: class {
     func getAddInfoFirst()->String
     func getAddInfoSecond()->String
     func getDayIcon(index: Int)->String
+    func selectAddInfo(index: Int)
 }
 
 //MARK: Interactor -

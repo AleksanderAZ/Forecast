@@ -18,6 +18,14 @@ struct CityModel {
     let city: CitySearchModel
     var tempr: String
     var link: String
+    var icon: String
+    
+    init(city: CitySearchModel) {
+        self.city = city
+        tempr = ""
+        link = ""
+        icon = ""
+    }
 }
 
 
