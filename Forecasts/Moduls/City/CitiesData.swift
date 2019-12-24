@@ -28,7 +28,6 @@ extension Data: PropertyListValue {}
 extension Dictionary: PropertyListValue where Key == String, Value: PropertyListValue {}
 extension Array: PropertyListValue where Element: PropertyListValue {}
 
-//@propertyWrapper
 struct CitiesUserDefault<T: PropertyListValue> {
     let key: Key
     private let userDef = UserDefaults.standard
